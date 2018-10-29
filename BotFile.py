@@ -95,25 +95,27 @@ async def guess(ctx, y: int):
         embed = discord.Embed(title="You cannot win something, you already have!", description="You have AngryMod role already!", color=0xff0000)
         await bot.say(embed=embed)
     else:
-           
             a = random.randint(1, 100)
             await bot.say("Ok, lemme roll the dice")
             await asyncio.sleep(2)
             await bot.say("...")
-            await asyncio.sleep(3)
+            await asyncio.sleep(1)
             await bot.say("...")
-            await asyncio.sleep(5)
+            await asyncio.sleep(1)
             await bot.say("I rolled a " + str(a) + "!") 
             
 
             if y == a:
+                 
+                 rolex = discord.utils.get(ctx.message.server.roles, name='AngryMod')
                  await bot.add_roles(ctx.message.author, rolex)
                  embed = discord.Embed(title="Congratulations {}! You win the AngryMod role.".format(ctx.message.author.name) , color=0xff72ff)
-                 await bot.say(embed=embed) 
+                 await bot.say(embed=embed)
+                  
             else:
                  embed = discord.Embed(title="{} guessed wrong HAHA".format(ctx.message.author.name) , color=0xf072ff)
                  await bot.say(embed=embed) 
-                    
+                 
 
 bot.run(os.getenv('TOKEN'))
 

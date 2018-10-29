@@ -79,8 +79,8 @@ async def tempmute(ctx, user: discord.Member):
             await asyncio.sleep(5)
             #stopwatch(x * 60)
 
-            role2 = discord.utils.get(user.server.roles, name='Muted(Meee)')
-            await bot.remove_roles(user, role2)
+            await bot.remove_roles(user, role)
+            await asyncio.sleep(5)
             await bot.add_roles(user, rolex)
             embed = discord.Embed(title="{} recovered.".format(user.name) , color=0x0072ff)
             await bot.say(embed=embed)

@@ -65,7 +65,8 @@ async def mute(ctx, user: discord.Member):
 @bot.command(pass_context=True)
 async def tempmute(ctx, user: discord.Member):
     #ctx.message.author.server_permissions.kick_members or 
-    if ("504819720197898252" in (role.id for role in ctx.message.author.roles)):
+   if not ("444444522450124817" in (role.id for role in ctx.message.author.roles)):
+     if ("504819720197898252" in (role.id for role in ctx.message.author.roles)):
             role = discord.utils.get(user.server.roles, name='Muted(Meee)') 
             x = random.randint(1, 10)
             embed = discord.Embed(title="{} has been muted for ".format(user.name) + str(x) + " minutes", color=0x0072ff)
@@ -85,7 +86,7 @@ async def tempmute(ctx, user: discord.Member):
             embed = discord.Embed(title="{} recovered.".format(user.name) , color=0x0072ff)
             await bot.say(embed=embed)
           
-    else:
+     else:
             embed = discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0xff0000)
             await bot.say(embed=embed)
             

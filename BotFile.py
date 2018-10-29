@@ -6,7 +6,10 @@ from discord.ext.commands import Bot
 import asyncio
 import time
 import os
-
+import random 
+global a
+global b
+global x
 
 
 
@@ -62,17 +65,19 @@ async def mute(ctx, user: discord.Member):
 
 @bot.command(pass_context=True)
 async def tempmute(ctx, user: discord.Member):
-
+    #ctx.message.author.server_permissions.kick_members or 
     if ("504819720197898252" in (role.id for role in ctx.message.author.roles)):
             role = discord.utils.get(user.server.roles, name='Muted(Meee)') 
-            embed = discord.Embed(title="{} has been muted for 5 minute".format(user.name), color=0x0072ff)
+            x = random.randint(1, 5)
+            embed = discord.Embed(title="{} has been muted for " x " minutes".format(user.name), color=0x0072ff)
+
             embed.set_thumbnail(url=user.avatar_url)
             await bot.add_roles(user, role)
             await bot.say(embed=embed)
             rolex = discord.utils.get(user.server.roles, name='AngryMod') 
             await bot.remove_roles(ctx.message.author, rolex)
 
-            await asyncio.sleep(300)
+            await asyncio.sleep(x * 60)
             #stopwatch(10)
 
             role2 = discord.utils.get(user.server.roles, name='Muted(Meee)')
@@ -90,5 +95,6 @@ async def tempmute(ctx, user: discord.Member):
 
 
 bot.run(os.getenv('TOKEN'))
+
 
 

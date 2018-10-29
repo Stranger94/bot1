@@ -41,6 +41,7 @@ async def on_ready():
     print ("Bot Name: " + bot.user.name)
     print ("Bot ID: " + bot.user.id)    
  
+@commands.cooldown(1, 30, commands.BucketType.user)
 
 
 @bot.command(pass_context = True)

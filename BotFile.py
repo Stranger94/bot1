@@ -90,12 +90,12 @@ async def tempmute(ctx, user: discord.Member):
             await bot.say(embed=embed)
             
 @bot.command(pass_context=True)
-async def guess(ctx, y: str):
+async def guess(ctx, y: int):
     if ("504819720197898252" in (role.id for role in ctx.message.author.roles)):
         embed = discord.Embed(title="You cannot win something, you already have!", description="You have AngryMod role already!", color=0xff0000)
         await bot.say(embed=embed)
     else:
-            y = int(y)
+           
             a = random.randint(1, 100)
             await bot.say("Ok, lemme roll the dice")
             await asyncio.sleep(2)
@@ -107,12 +107,12 @@ async def guess(ctx, y: str):
             
 
             if y == a:
-               await bot.add_roles(ctx.message.author, rolex)
-               embed = discord.Embed(title="Congratulations {}! You win the AngryMod role.".format(user.name) , color=0x0072ff)
-               await bot.say(embed=embed) 
+                 await bot.add_roles(ctx.message.author, rolex)
+                 embed = discord.Embed(title="Congratulations {}! You win the AngryMod role.".format(ctx.message.author.name) , color=0x0xff72ff)
+                 await bot.say(embed=embed) 
             else:
-               embed = discord.Embed(title="{} guessed wrong HAHA".format(user.name) , color=0x0f72ff)
-               await bot.say(embed=embed) 
+                 embed = discord.Embed(title="{} guessed wrong HAHA".format(ctx.message.author.name) , color=0xf072ff)
+                 await bot.say(embed=embed) 
                     
 
 bot.run(os.getenv('TOKEN'))

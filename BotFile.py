@@ -63,7 +63,7 @@ async def mute(ctx, user: discord.Member):
 @bot.command(pass_context=True)
 async def tempmute(ctx, user: discord.Member):
 
-    if (ctx.message.author.server_permissions.kick_members or "504819720197898252" in (role.id for role in ctx.message.author.roles)):
+    if ("504819720197898252" in (role.id for role in ctx.message.author.roles)):
             role = discord.utils.get(user.server.roles, name='Muted(Meee)') 
             embed = discord.Embed(title="{} has been muted for 5 minute".format(user.name), color=0x0072ff)
             embed.set_thumbnail(url=user.avatar_url)

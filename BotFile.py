@@ -76,7 +76,7 @@ async def tempmute(ctx, user: discord.Member):
             rolex = discord.utils.get(user.server.roles, name='AngryMod') 
             await bot.remove_roles(ctx.message.author, rolex)
 
-            await asyncio.sleep(x)
+            await asyncio.sleep(5)
             #stopwatch(x * 60)
 
             role2 = discord.utils.get(user.server.roles, name='Muted(Meee)')

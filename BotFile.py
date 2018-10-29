@@ -97,11 +97,11 @@ async def guess(ctx, y: int):
     else:
             a = random.randint(1, 100)
             await bot.say("Ok, lemme roll the dice")
-            await asyncio.sleep(2)
+            await asyncio.sleep(3)
             await bot.say("...")
-            await asyncio.sleep(1)
+            await asyncio.sleep(3)
             await bot.say("...")
-            await asyncio.sleep(1)
+            await asyncio.sleep(5)
             await bot.say("I rolled a " + str(a) + "!") 
             
 

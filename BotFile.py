@@ -108,7 +108,7 @@ async def guess(ctx, y: int):
 
             if y == a:
                  await bot.add_roles(ctx.message.author, rolex)
-                 embed = discord.Embed(title="Congratulations {}! You win the AngryMod role.".format(ctx.message.author.name) , color=0x0xff72ff)
+                 embed = discord.Embed(title="Congratulations {}! You win the AngryMod role.".format(ctx.message.author.name) , color=0xff72ff)
                  await bot.say(embed=embed) 
             else:
                  embed = discord.Embed(title="{} guessed wrong HAHA".format(ctx.message.author.name) , color=0xf072ff)

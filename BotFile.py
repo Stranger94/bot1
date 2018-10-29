@@ -69,7 +69,7 @@ async def tempmute(ctx, user: discord.Member):
     if ("504819720197898252" in (role.id for role in ctx.message.author.roles)):
             role = discord.utils.get(user.server.roles, name='Muted(Meee)') 
             x = random.randint(1, 5)
-            embed = discord.Embed(title="{} has been muted for " x " minutes".format(user.name), color=0x0072ff)
+            embed = discord.Embed(title="{} has been muted for " str(x) " minutes".format(user.name), color=0x0072ff)
 
             embed.set_thumbnail(url=user.avatar_url)
             await bot.add_roles(user, role)

@@ -123,6 +123,20 @@ async def guess(ctx, y: int):
                  embed = discord.Embed(title="{} guessed wrong HAHA".format(ctx.message.author.name) , color=0xf072ff)
                  await bot.say(embed=embed) 
                  
+@commands.cooldown(1, 300, commands.BucketType.user)
 
+@bot.command(pass_context=True)
+async def nuke(ctx, user: discord.Member):
+    
+    role = discord.utils.get(user.server.roles, name='Muted(Meee)')
+    x = random.randint(5, 30)
+    embed = discord.Embed(title="{}, shut up for ".format(user.name) + str(x) + " seconds ploz.", color=0x0072ff)
+    embed.set_thumbnail(url=user.avatar_url)
+    await bot.add_roles(user, role)
+    await bot.say(embed=embed)
+    await asyncio.sleep(x)
+    await bot.remove_roles(user, role)
+    await bot.say("{} is back".format(user.name))
+    
 bot.run(os.getenv('TOKEN'))
 

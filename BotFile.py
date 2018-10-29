@@ -69,8 +69,8 @@ async def tempmute(ctx, user: discord.Member):
             embed.set_thumbnail(url=user.avatar_url)
             await bot.add_roles(user, role)
             await bot.say(embed=embed)
-            rolex = discord.utils.get(user.server.roles, "504819720197898252" in (role.id for role in ctx.message.author.roles)) 
-            await bot.remove_roles(ctx.message.author, "504819720197898252" in role.id)
+            rolex = discord.utils.get(user.server.roles, name='AngryMod') 
+            await bot.remove_roles(ctx.message.author, rolex)
 
             await asyncio.sleep(300)
             #stopwatch(10)

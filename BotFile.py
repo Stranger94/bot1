@@ -41,13 +41,14 @@ async def on_ready():
     print ("Bot Name: " + bot.user.name)
     print ("Bot ID: " + bot.user.id)    
  
-@commands.cooldown(1, 30, commands.BucketType.user)
+@commands.cooldown(1, 10, commands.BucketType.user)
 
 
 @bot.command(pass_context = True)
 async def ping(ctx):
        await bot.say("Pong") 
 
+@commands.cooldown(1, 30, commands.BucketType.user)
       
 
 @bot.command(pass_context=True)
@@ -62,6 +63,8 @@ async def mute(ctx, user: discord.Member):
     else:
        embed = discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0xff0000)
        await bot.say(embed=embed)
+
+@commands.cooldown(1, 30, commands.BucketType.user)
 
 @bot.command(pass_context=True)
 async def tempmute(ctx, user: discord.Member):
@@ -90,7 +93,9 @@ async def tempmute(ctx, user: discord.Member):
      else:
             embed = discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0xff0000)
             await bot.say(embed=embed)
-            
+
+@commands.cooldown(1, 30, commands.BucketType.user)
+
 @bot.command(pass_context=True)
 async def guess(ctx, y: int):
     if ("504819720197898252" in (role.id for role in ctx.message.author.roles)):
@@ -103,7 +108,7 @@ async def guess(ctx, y: int):
             await bot.say("...")
             await asyncio.sleep(3)
             await bot.say("...")
-            await asyncio.sleep(5)
+            await asyncio.sleep(3)
             await bot.say("I rolled a " + str(a) + "!") 
             
 

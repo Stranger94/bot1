@@ -94,7 +94,7 @@ async def tempmute(ctx, user: discord.Member):
             embed = discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0xff0000)
             await bot.say(embed=embed)
 
-@commands.cooldown(1, 30, commands.BucketType.user)
+@commands.cooldown(1, 120, commands.BucketType.user)
 
 @bot.command(pass_context=True)
 async def guess(ctx, y: int):
@@ -102,7 +102,7 @@ async def guess(ctx, y: int):
         embed = discord.Embed(title="You cannot win something, you already have!", description="You have AngryMod role already!", color=0xff0000)
         await bot.say(embed=embed)
     else:
-            a = random.randint(1, 100)
+            a = random.randint(1, 30)
             await bot.say("Ok, lemme roll the dice")
             await asyncio.sleep(3)
             await bot.say("...")

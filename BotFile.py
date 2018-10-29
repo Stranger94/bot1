@@ -105,14 +105,14 @@ async def guess(ctx, y):
             await bot.say("I rolled a " + str(a) + "!") 
             
 
-            if y == a:
-                 await bot.add_roles(ctx.message.author, rolex)
-                 embed = discord.Embed(title="Congratulations {}! You win the AngryMod role.".format(user.name) , color=0x0072ff)
-                 await bot.say(embed=embed) 
-            else:
-                 embed = discord.Embed(title="{} guessed wrong HAHA".format(user.name) , color=0x0f72ff)
-                 await bot.say(embed=embed) 
-                 
+                if y == a:
+                    await bot.add_roles(ctx.message.author, rolex)
+                    embed = discord.Embed(title="Congratulations {}! You win the AngryMod role.".format(user.name) , color=0x0072ff)
+                    await bot.say(embed=embed) 
+                else:
+                    embed = discord.Embed(title="{} guessed wrong HAHA".format(user.name) , color=0x0f72ff)
+                    await bot.say(embed=embed) 
+                    
 
 bot.run(os.getenv('TOKEN'))
 

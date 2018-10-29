@@ -76,8 +76,12 @@ async def tempmute(ctx, user: discord.Member):
             #stopwatch(10)
 
             role2 = discord.utils.get(user.server.roles, name='Muted(Meee)')
-            embed = discord.Embed(title="{} unmuted.".format(user.name) , color=0x0072ff)
+            role3 = discord.utils.get(user.server.roles, name='AngryMod')
+            embed = discord.Embed(title="{} recovered.".format(user.name) , color=0x0072ff)
+            embed.set_thumbnail(url=user.avatar_url)
             await bot.remove_roles(user, role2)
+            await bot.get_roles(user, role3)
+
             await bot.say(embed=embed)
           
     else:

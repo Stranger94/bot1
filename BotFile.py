@@ -48,9 +48,7 @@ async def on_ready():
 async def on_ready():
     client.loop.create_task(status())
 
-#os.chdir(r'C:\Users\Richard\Desktop\Discord Bot Domination')
-os.chdir(r'bot1')
-#config = default.get("users.json")
+"""os.chdir(r'C:\Users\Richard\Desktop\Discord Bot Domination')
 
 @bot.event
 async def on_member_join(member):
@@ -91,8 +89,8 @@ async def level_up(users,user,channel):
 
     if level_start < level_end:
         await bot.send_message(channel, '{} has leveled up to level {}'.format(user.mention, level_end))
-        users[user.id]['level'] = level_end   
-    
+        users[user.id]['level'] = level_end
+ """   
     
     
     

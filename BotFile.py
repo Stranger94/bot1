@@ -144,6 +144,10 @@ async def status(ctx):
         await asyncio.sleep(10)
         await bot.change_presence(game=discord.Game(name="Mute with ~nuke"), status=discord.Status("idle"))
         await asyncio.sleep(10)
+        await bot.change_presence(game=discord.Game(name="Win with ~guess 1-30"), status=discord.Status("idle"))
+        await asyncio.sleep(10)
+        await bot.change_presence(game=discord.Game(name="+suggest Update Ideas"), status=discord.Status("idle"))
+        await asyncio.sleep(10)
 
 bot.run(os.getenv('TOKEN'))
 

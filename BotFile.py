@@ -8,6 +8,7 @@ import time
 import os
 import random
 import math
+import logging
 global a
 global b
 global x
@@ -138,5 +139,9 @@ async def nuke(ctx, user: discord.Member):
     await bot.remove_roles(user, role)
     await bot.say("{} is back".format(user.name))
     
+@bot.command(pass_context=True, hidden=True)
+async def status(ctx):
+        await bot.change_presence(game=discord.Game(name="Strangers Bot"), status=discord.Status("online"))
+        
 bot.run(os.getenv('TOKEN'))
 

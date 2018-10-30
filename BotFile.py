@@ -103,7 +103,7 @@ async def tempmute(ctx, user: discord.Member):
         else:
             embed = discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0xff0000)
             await bot.say(embed=embed)
-@commands.cooldown(1, 120, commands.BucketType.user)
+@commands.cooldown(3, 120, commands.BucketType.user)
             
 @bot.command(pass_context=True)
 async def guess(ctx, y: int):

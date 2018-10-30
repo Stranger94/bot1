@@ -48,7 +48,7 @@ async def on_ready():
 async def on_ready():
     client.loop.create_task(status())
 
-@commands.cooldown(1, 30, commands.BucketType.user)
+@commands.cooldown(1, 10, commands.BucketType.user)
 
 
 @bot.command(pass_context = True)
@@ -56,6 +56,7 @@ async def ping(ctx):
        embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 30.10.2018 02:38" , color=0x80f43d)
        await bot.say(embed=embed)
       
+@commands.cooldown(1, 30, commands.BucketType.user)
 
 @bot.command(pass_context=True)
 async def mute(ctx, user: discord.Member):
@@ -69,6 +70,7 @@ async def mute(ctx, user: discord.Member):
     else:
        embed = discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0xff0000)
        await bot.say(embed=embed)
+@commands.cooldown(1, 30, commands.BucketType.user)
 
 @bot.command(pass_context=True)
 async def tempmute(ctx, user: discord.Member):
@@ -98,6 +100,7 @@ async def tempmute(ctx, user: discord.Member):
         else:
             embed = discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0xff0000)
             await bot.say(embed=embed)
+@commands.cooldown(1, 120, commands.BucketType.user)
             
 @bot.command(pass_context=True)
 async def guess(ctx, y: int):
@@ -105,13 +108,13 @@ async def guess(ctx, y: int):
         embed = discord.Embed(title="You cannot win something, you already have!", description="You have AngryMod role already!", color=0xff0000)
         await bot.say(embed=embed)
     else:
-            a = random.randint(1, 100)
+            a = random.randint(1, 30)
             await bot.say("Ok, lemme roll the dice")
-            await asyncio.sleep(2)
+            await asyncio.sleep(3)
             await bot.say("...")
-            await asyncio.sleep(1)
+            await asyncio.sleep(3)
             await bot.say("...")
-            await asyncio.sleep(1)
+            await asyncio.sleep(3)
             await bot.say("I rolled a " + str(a) + "!") 
             
 

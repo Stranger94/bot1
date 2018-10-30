@@ -37,7 +37,7 @@ def cooldown(seconds):
 
 bot = commands.Bot(command_prefix='~')
 
-pfp_path = "C:\Users\Richard\Desktop.pfp.png"
+pfp_path = "C:\Users\Richard\Desktop\pfp.png"
 
 fp = open(pfp_path, 'rb')
 pfp = fp.read()

@@ -48,8 +48,8 @@ async def on_ready():
 async def on_ready():
     client.loop.create_task(status())
 
-os.chdir(r'C:\Users\Richard\Desktop\Discord Bot Domination')
-
+#os.chdir(r'C:\Users\Richard\Desktop\Discord Bot Domination')
+os.chdir(r'bot1')
 #config = default.get("users.json")
 
 @bot.event

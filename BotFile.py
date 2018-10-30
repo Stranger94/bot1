@@ -152,7 +152,7 @@ async def status(ctx):
         
 @bot.command(pass_context=True, hidden=True)
 async def pfp(ctx, pfp):    
-    if ctx.message.author.server_permissions.kick_members
+    if ctx.message.author.server_permissions.kick_members:
         fp = open(pfp, 'rb')
         pfp = fp.read()
         await client.edit_profile(password=None, avatar=pfp)

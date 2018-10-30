@@ -50,8 +50,8 @@ async def on_ready():
 
 @bot.command(pass_context = True)
 async def ping(ctx):
-       await bot.say("Pong") 
-
+       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 30.10.2018 02:38" , color=0x80f43d)
+       await bot.say(embed=embed)
       
 
 @bot.command(pass_context=True)

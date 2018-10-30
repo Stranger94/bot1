@@ -37,12 +37,19 @@ def cooldown(seconds):
 
 bot = commands.Bot(command_prefix='~')
 
+pfp_path = "pfp.png"
+
+fp = open(pfp_path, 'rb')
+pfp = fp.read()
+
 @bot.event
 async def on_ready():
     print ("Ready")
     print ("Bot Name: " + bot.user.name)
     print ("Bot ID: " + bot.user.id)    
     bot.loop.create_task(status())
+    await bot.edit_profile(password=None, avatar=pfp)
+
 
 @commands.cooldown(1, 30, commands.BucketType.user)
 

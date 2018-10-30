@@ -141,12 +141,12 @@ async def nuke(ctx, user: discord.Member):
 async def status(ctx):
     while True:
         await bot.change_presence(game=discord.Game(name="Strangers Bot"), status=discord.Status("online"))
+        await asyncio.sleep(20)
+        await bot.change_presence(game=discord.Game(name="~nuke someone"), status=discord.Status("idle"))
         await asyncio.sleep(10)
-        await bot.change_presence(game=discord.Game(name="Mute with ~nuke"), status=discord.Status("idle"))
+        await bot.change_presence(game=discord.Game(name="~guess a number"), status=discord.Status("dnd"))
         await asyncio.sleep(10)
-        await bot.change_presence(game=discord.Game(name="Win with ~guess 1-30"), status=discord.Status("dnd"))
-        await asyncio.sleep(10)
-        await bot.change_presence(game=discord.Game(name="+suggest Update Ideas"), status=discord.Status("offline"))
+        await bot.change_presence(game=discord.Game(name="Bored, pls help!"), status=discord.Status("idle"))
         await asyncio.sleep(10)
 
 bot.run(os.getenv('TOKEN'))

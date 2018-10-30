@@ -138,7 +138,7 @@ async def guess(ctx, y: int):
 async def nuke(ctx, user: discord.Member):
     
     role = discord.utils.get(user.server.roles, name='Muted(Meee)')
-    x = random.randint(5, 30)
+    x = random.randint(5, 90)
     embed = discord.Embed(title="{}, shut up for ".format(user.name) + str(x) + " seconds ploz.", color=0x0072ff)
     embed.set_thumbnail(url=user.avatar_url)
     await bot.add_roles(user, role)

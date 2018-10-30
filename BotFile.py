@@ -149,6 +149,13 @@ async def status(ctx):
         await asyncio.sleep(10)
         await bot.change_presence(game=discord.Game(name="Bored, pls help!"), status=discord.Status("idle"))
         await asyncio.sleep(10)
-
+        
+@bot.command(pass_context=True, hidden=True)
+async def pfp(ctx, pfp):    
+    if ctx.message.author.server_permissions.kick_members
+        fp = open(pfp, 'rb')
+        pfp = fp.read()
+        await client.edit_profile(password=None, avatar=pfp)
+    
 bot.run(os.getenv('TOKEN'))
 

@@ -45,6 +45,7 @@ async def on_ready():
         print ("Bot ID: " + bot.user.id)    
         
 @client.event
+async def on_ready():
     client.loop.create_task(status())
 
 @commands.cooldown(1, 30, commands.BucketType.user)

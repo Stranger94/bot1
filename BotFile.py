@@ -40,10 +40,11 @@ bot = commands.Bot(command_prefix='~')
 
 @bot.event
 async def on_ready():
-    print ("Ready")
-    print ("Bot Name: " + bot.user.name)
-    print ("Bot ID: " + bot.user.id)    
-    client.loop.create_task(status())
+    while True:
+        print ("Ready")
+        print ("Bot Name: " + bot.user.name)
+        print ("Bot ID: " + bot.user.id)    
+        client.loop.create_task(status())
 
 @commands.cooldown(1, 30, commands.BucketType.user)
 

@@ -132,7 +132,7 @@ async def guess(ctx, y: int):
                  embed = discord.Embed(title="{} guessed wrong HAHA".format(ctx.message.author.name) , color=0xf072ff)
                  await bot.say(embed=embed) 
                  
-@commands.cooldown(1, 300, commands.BucketType.user)
+@commands.cooldown(3, 30, commands.BucketType.user)
 
 @bot.command(pass_context=True)
 async def nuke(ctx, user: discord.Member):

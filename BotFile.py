@@ -185,7 +185,68 @@ async def status(ctx):
         await asyncio.sleep(10)
         await bot.change_presence(game=discord.Game(name="Bored, pls help!"), status=discord.Status("idle"))
         await asyncio.sleep(10)
+@bot.command(pass_context=True)
+async def botguess(ctx):
+  while True:
 
+    await asyncio.sleep(300)
+    if False:
+        y = random.randint(1, 30)
+        await bot.say("~guess " + str(y))
+        
+    else:
+        
+        if False:
+            embed = discord.Embed(title="Unknown constructions? Dick stuck in sink.", description="Guess from 1 to 30, and nothing weird!", color=0x660e1b)
+            await bot.say(embed=embed)
+        else:
+            y = random.randint(1, 30)
+            await bot.say("~guess " + str(y))
+            a = random.randint(1, 30)
+            await bot.say("Rolling...")
+            await asyncio.sleep(3)
+            await bot.say("...")
+            await asyncio.sleep(3)
+            await bot.say("...")
+            await asyncio.sleep(3)
+            await bot.say("I rolled a " + str(a) + "!") 
+            
+            if y == a:
+                 
+                
+                 embed = discord.Embed(title="I win, yay." , color=0x7cff30)
+                 await bot.say(embed=embed)
+            else:
+
+                if ((y + 2) == a or (y + 1) == a or (y - 1) == a or (y - 2) == a):
+                 
+                        embed = discord.Embed(title= "Very scarce oO", description="Dammit.", color=0xc99206)
+                        await bot.say(embed=embed)
+                        await bot.say("Ok...Rerolling.")
+                        a = random.randint(1, 30)
+                        await asyncio.sleep(3)
+                        await bot.say("...")
+                        await asyncio.sleep(3)
+                        await bot.say("...")
+                        await asyncio.sleep(3)
+                        await bot.say("I rolled a " + str(a) + "!") 
+                
+                        if y == a:
+                 
+  
+                            embed = discord.Embed(title="Congratulations to me, I win!" , color=0x7cff30)
+                            await bot.say(embed=embed)
+                  
+                        else:
+                            embed = discord.Embed(title="Nvm, fail!".format(ctx.message.author.name) , color=0xdb0020)
+                            await bot.say(embed=embed) 
+                else:
+                        embed = discord.Embed(title="Aw, no luck!", color=0xdb0020)
+                        await bot.say(embed=embed) 
+
+@bot.event
+async def on_ready():
+        client.loop.create_task(botguess())
     
 bot.run(os.getenv('TOKEN'))
 

@@ -189,7 +189,7 @@ async def status(ctx):
 async def botguess(ctx):
   while True:
 
-    await asyncio.sleep(300)
+    await asyncio.sleep(2000)
     if False:
         y = random.randint(1, 30)
         await bot.say("~guess " + str(y))

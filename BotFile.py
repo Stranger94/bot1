@@ -248,5 +248,222 @@ async def botguess(ctx):
 async def on_ready():
         client.loop.create_task(botguess())
     
+    
+@commands.cooldown(1, 120, commands.BucketType.user)            
+@bot.command(pass_context=True)
+async def battle(ctx, user: discord.Member):
+
+     embed = discord.Embed(title = "A random day", description="{} challenges {} to a battle!".format(ctx.message.author.name, user.name) , color=0xbc4403)
+     await bot.say(embed=embed)
+     await asyncio.sleep(5)
+
+
+
+     if ("507312880211984384" in (role.id for role in ctx.message.author.roles)):
+         Attack = 30
+         str1 = "pulls out his Dragon sword"
+     else:
+         if ("507312873337389057" in (role.id for role in ctx.message.author.roles)):
+             Attack = 27
+             str1 = "pulls out his Ameythst sword"
+         else: 
+             if ("497058717305667586" in (role.id for role in ctx.message.author.roles)):
+                 Attack = 24
+                 str1 = "pulls out his Diamond sword"
+             else:
+                 if ("497058660535762946" in (role.id for role in ctx.message.author.roles)):
+                     Attack = 22
+                     str1 = "pulls out his Gold sword"
+                 else: 
+                     if ("497058624934379522" in (role.id for role in ctx.message.author.roles)):
+                        Attack = 19
+                        str1 = "pulls out his Stone sword"
+                     else: 
+                         if ("497058550192013312" in (role.id for role in ctx.message.author.roles)):
+                             Attack = 12
+                             str1 = "pulls out his Wood sword"
+                         else:  
+                                Attack = 5
+                                str1 = "charges with bare hands"
+
+     if ("507324396252299268" in (role.id for role in ctx.message.author.roles)):
+         Defense = 8
+     else:
+         if ("507324354577825793" in (role.id for role in ctx.message.author.roles)):
+             Defense = 6
+         else: 
+             if ("507324314820018217" in (role.id for role in ctx.message.author.roles)):
+                 Defense = 5
+             else:
+                 if ("507324278547677219" in (role.id for role in ctx.message.author.roles)):
+                     Defense = 4
+                 else: 
+                     if ("507324244053590026" in (role.id for role in ctx.message.author.roles)):
+                        Defense = 2
+                     else: 
+                         if ("507324191117148172" in (role.id for role in ctx.message.author.roles)):
+                             Defense = 1
+                         else: Defense = 0
+
+
+
+
+     if ("507312880211984384" in (role.id for role in user.roles)):
+         Attack2 = 30
+     else:
+         if ("507312873337389057" in (role.id for role in user.roles)):
+             Attack2 = 27
+         else: 
+             if ("497058717305667586" in (role.id for role in user.roles)):
+                 Attack2 = 24
+             else:
+                 if ("497058660535762946" in (role.id for role in user.roles)):
+                     Attack2 = 22
+                 else: 
+                     if ("497058624934379522" in (role.id for role in user.roles)):
+                        Attack2 = 19
+                     else: 
+                         if ("497058550192013312" in (role.id for role in user.roles)):
+                             Attack2 = 12
+                         else:  
+                                Attack2 = 5
+
+     if ("507324396252299268" in (role.id for role in user.roles)):
+         Defense2 = 8
+     else:
+         if ("507324354577825793" in (role.id for role in user.roles)):
+             Defense2 = 6
+         else: 
+             if ("507324314820018217" in (role.id for role in user.roles)):
+                 Defense2 = 5
+             else:
+                 if ("507324278547677219" in (role.id for role in user.roles)):
+                     Defense2 = 4
+                 else: 
+                     if ("507324244053590026" in (role.id for role in user.roles)):
+                        Defense2 = 2
+                     else: 
+                         if ("507324191117148172" in (role.id for role in user.roles)):
+                             Defense2 = 1
+                         else: Defense2 = 0
+     
+     embed = discord.Embed(title = "Battle begins", description="{} ".format(ctx.message.author.name) + str1 + " to attack {}".format(user.name), color=0x03bc4d)
+     await bot.say(embed=embed)
+
+     Damage1 = Attack - Defense2
+     Damage2 = Attack2 - Defense
+     HP1 = 200
+     HP2 = 200
+
+     if ("497072853326495755" in (role.id for role in ctx.message.author.roles)):
+         Chance = 17
+     else:
+         if ("444427406225309696" in (role.id for role in ctx.message.author.roles)):
+             Chance = 16
+         else: 
+             if ("504819720197898252" in (role.id for role in ctx.message.author.roles)):
+                 Chance = 15
+             else:
+                 if ("444844581062836244" in (role.id for role in ctx.message.author.roles)):
+                     Chance = 14
+                 else: 
+                     if ("502174923557699584" in (role.id for role in ctx.message.author.roles)):
+                        Chance = 13
+                     else: 
+                         if ("444448025482493955" in (role.id for role in ctx.message.author.roles)):
+                             Chance = 12
+                         else: 
+                            if ("500092762226556939" in (role.id for role in ctx.message.author.roles)):
+                                Chance = 11
+                            else: 
+                                if ("444426912845266944" in (role.id for role in ctx.message.author.roles)):
+                                    Chance = 10
+                                else:  
+                                    if ("497051370386489344" in (role.id for role in ctx.message.author.roles)):
+                                       Chance = 9
+                                    else:
+                                          Chance = 8
+
+     if ("497072853326495755" in (role.id for role in user.roles)):
+            Chance2 = 17
+     else:
+         if ("444427406225309696" in (role.id for role in user.roles)):
+             Chance2 = 16
+         else: 
+             if ("504819720197898252" in (role.id for role in user.roles)):
+                 Chance2 = 15
+             else:
+                 if ("444844581062836244" in (role.id for role in user.roles)):
+                     Chance2 = 14
+                 else: 
+                     if ("502174923557699584" in (role.id for role in user.roles)):
+                        Chance2 = 13
+                     else: 
+                         if ("444448025482493955" in (role.id for role in user.roles)):
+                             Chance2 = 12
+                         else: 
+                            if ("500092762226556939" in (role.id for role in user.roles)):
+                                Chance2 = 11
+                            else: 
+                                if ("444426912845266944" in (role.id for role in user.roles)):
+                                    Chance2 = 10
+                                else:  
+                                    if ("497051370386489344" in (role.id for role in user.roles)):
+                                       Chance2 = 9
+                                    else:
+                                          Chance2 = 8
+
+#Battle
+
+     await asyncio.sleep(2)
+
+     w = 0
+      
+     while (HP1 > 0 and HP2 > 2):
+            await asyncio.sleep(2)
+            w += 1
+            await bot.say("Round " + str(w))
+            a1 = random.randint(1, 20)
+            a2 = random.randint(1, 20)
+            if a1 <= Chance:
+                HP2 = HP2 - Damage1
+                await bot.say("{} does ".format(ctx.message.author.name) + str(Damage1) + "damage. {} has ".format(user.name) + str(HP2) + " HP left.")
+            else: 
+                await bot.say("{} misses".format(ctx.message.author.name) + "{} has ".format(user.name) + str(HP2) + " HP left.")
+
+            if a2 <= Chance2:
+                HP1 = HP1 - Damage2
+                await bot.say("{} does ".format(user.name) + str(Damage2) + "damage. {} has ".format(ctx.message.author.name) + str(HP1) + " HP left.")
+            else:
+                await bot.say("{} misses".format(user.name) + "{} has ".format(ctx.message.author.name) + str(HP1) + " HP left.")
+
+
+     if (HP1 > 0):
+        embed = discord.Embed(title = "Result", description="{} wins. ".format(ctx.message.author.name) + "{} loses and is dead.".format(user.name), color=0x03bc4d)
+        await bot.say(embed=embed)
+
+        role = discord.utils.get(user.server.roles, name='Muted(Meee)')
+        x = random.randint(10, 100)
+        embed = discord.Embed(title="{} gets muted for".format(user.name) + str(x) + " seconds. Hope he can recover in that time.", color=0x0072ff)
+        embed.set_thumbnail(url=user.avatar_url)
+        await bot.add_roles(user, role)
+        await bot.say(embed=embed)
+        await asyncio.sleep(x)
+        await bot.remove_roles(user, role)
+        await bot.say("{} is back".format(user.name))
+
+     if (HP2 > 0):
+         embed = discord.Embed(title = "Result", description="{} wins. ".format(user.name) + "{} loses and is dead.".format(ctx.message.author.name), color=0x03bc4d)
+         await bot.say(embed=embed)
+         role = discord.utils.get(user.server.roles, name='Muted(Meee)')
+         x = random.randint(10, 100)
+         embed = discord.Embed(title="{} gets muted for".format(ctx.message.author.name) + str(x) + " seconds. Hope he can recover in that time.", color=0x0072ff)
+         embed.set_thumbnail(url=ctx.message.author.avatar_url)
+         await bot.add_roles(ctx.message.author, role)
+         await bot.say(embed=embed)
+         await asyncio.sleep(x)
+         await bot.remove_roles(ctx.message.author, role)
+         await bot.say("{} is back".format(ctx.message.author.name))
+            
 bot.run(os.getenv('TOKEN'))
 

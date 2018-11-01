@@ -249,7 +249,7 @@ async def on_ready():
         client.loop.create_task(botguess())
     
     
-@commands.cooldown(1, 120, commands.BucketType.user)            
+@commands.cooldown(2, 300, commands.BucketType.user)            
 @bot.command(pass_context=True)
 async def battle(ctx, user: discord.Member):
 

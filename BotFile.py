@@ -439,7 +439,7 @@ async def battle(ctx, user: discord.Member):
 
 
      if (HP1 > 0):
-        embed = discord.Embed(title = "Result", description="{} wins. ".format(ctx.message.author.name) + "{} loses and is dead.".format(user.name), color=0x03bc4d)
+        embed = discord.Embed(title = "Result", description="{} wins. ".format(ctx.message.author.name) + "{} cannot defend and is dead.".format(user.name), color=0x03bc4d)
         await bot.say(embed=embed)
 
         role = discord.utils.get(user.server.roles, name='Muted(Meee)')
@@ -450,20 +450,20 @@ async def battle(ctx, user: discord.Member):
         await bot.say(embed=embed)
         await asyncio.sleep(x)
         await bot.remove_roles(user, role)
-        await bot.say("{} is back".format(user.name))
+        await bot.say("{} recovered his HP.".format(user.name))
 
      if (HP2 > 0):
-         embed = discord.Embed(title = "Result", description="{} wins. ".format(user.name) + "{} loses and is dead.".format(ctx.message.author.name), color=0x03bc4d)
+         embed = discord.Embed(title = "Result", description="{} wins. ".format(user.name) + "{} attacked and died lmao. You savage got your payoff.".format(ctx.message.author.name), color=0x03bc4d)
          await bot.say(embed=embed)
          role = discord.utils.get(user.server.roles, name='Muted(Meee)')
-         x = random.randint(10, 100)
+         x = random.randint(50, 300)
          embed = discord.Embed(title="{} gets muted for".format(ctx.message.author.name) + str(x) + " seconds. Hope he can recover in that time.", color=0x0072ff)
          embed.set_thumbnail(url=ctx.message.author.avatar_url)
          await bot.add_roles(ctx.message.author, role)
          await bot.say(embed=embed)
          await asyncio.sleep(x)
          await bot.remove_roles(ctx.message.author, role)
-         await bot.say("{} is back".format(ctx.message.author.name))
+         await bot.say("{} recovered his HP.".format(ctx.message.author.name))
             
 bot.run(os.getenv('TOKEN'))
 

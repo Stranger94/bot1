@@ -422,21 +422,30 @@ async def battle(ctx, user: discord.Member):
      while (HP1 > 0 and HP2 > 2):
             await asyncio.sleep(2)
             w += 1
-            await bot.say("Round " + str(w))
-            a1 = random.randint(1, 20)
-            a2 = random.randint(1, 20)
-            if a1 <= Chance:
-                HP2 = HP2 - Damage1
-                await bot.say("{} does ".format(ctx.message.author.name) + str(Damage1) + "damage. {} has ".format(user.name) + str(HP2) + " HP left.")
-            else: 
-                await bot.say("{} misses".format(ctx.message.author.name) + "{} has ".format(user.name) + str(HP2) + " HP left.")
+            
+            
 
-            if a2 <= Chance2:
-                HP1 = HP1 - Damage2
-                await bot.say("{} does ".format(user.name) + str(Damage2) + "damage. {} has ".format(ctx.message.author.name) + str(HP1) + " HP left.")
+
+            if w > 20:
+                await bot.say("Both players aggreed to a draw.")
             else:
-                await bot.say("{} misses".format(user.name) + "{} has ".format(ctx.message.author.name) + str(HP1) + " HP left.")
 
+
+                await bot.say("Round " + str(w))
+                a1 = random.randint(1, 20)
+                a2 = random.randint(1, 20)
+                if a1 <= Chance:
+                    HP2 = HP2 - Damage1
+                    await bot.say("{} does ".format(ctx.message.author.name) + str(Damage1) + "damage. {} has ".format(user.name) + str(HP2) + " HP left.")
+                else: 
+                    await bot.say("{} misses".format(ctx.message.author.name) + "{} has ".format(user.name) + str(HP2) + " HP left.")
+
+                if a2 <= Chance2:
+                    HP1 = HP1 - Damage2
+                    await bot.say("{} does ".format(user.name) + str(Damage2) + "damage. {} has ".format(ctx.message.author.name) + str(HP1) + " HP left.")
+                else:
+                    await bot.say("{} misses".format(user.name) + "{} has ".format(ctx.message.author.name) + str(HP1) + " HP left.")
+     
 
      if (HP1 > 0):
         embed = discord.Embed(title = "Result", description="{} wins. ".format(ctx.message.author.name) + "{} cannot defend and is dead.".format(user.name), color=0x03bc4d)

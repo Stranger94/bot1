@@ -417,38 +417,36 @@ async def battle(ctx, user: discord.Member):
 
      await asyncio.sleep(2)
 
-     w = 0
+          w = 0
       
      while (HP1 > 0 and HP2 > 2):
             await asyncio.sleep(2)
             w += 1
-            
-            
 
 
             if (w > 20 and w < 22):
                 await bot.say("Both players aggreed to a draw.")
             else:
+                if w < 21:
 
-              if:(w < 21)
-                await bot.say("Round " + str(w))
-                a1 = random.randint(1, 20)
-                a2 = random.randint(1, 20)
-                if a1 <= Chance:
-                    HP2 = HP2 - Damage1
-                    await bot.say("{} does ".format(ctx.message.author.name) + str(Damage1) + "damage. {} has ".format(user.name) + str(HP2) + " HP left.")
-                else: 
-                    await bot.say("{} misses".format(ctx.message.author.name) + "{} has ".format(user.name) + str(HP2) + " HP left.")
+                    await bot.say("Round " + str(w))
+                    a1 = random.randint(1, 20)
+                    a2 = random.randint(1, 20)
+                    if a1 <= Chance:
+                        HP2 = HP2 - Damage1
+                        await bot.say("{} does ".format(ctx.message.author.name) + str(Damage1) + "damage. {} has ".format(user.name) + str(HP2) + " HP left.")
+                    else: 
+                        await bot.say("{} misses".format(ctx.message.author.name) + "{} has ".format(user.name) + str(HP2) + " HP left.")
 
-                if a2 <= Chance2:
-                    HP1 = HP1 - Damage2
-                    await bot.say("{} does ".format(user.name) + str(Damage2) + "damage. {} has ".format(ctx.message.author.name) + str(HP1) + " HP left.")
-                else:
-                    await bot.say("{} misses".format(user.name) + "{} has ".format(ctx.message.author.name) + str(HP1) + " HP left.")
-     
+                    if a2 <= Chance2:
+                        HP1 = HP1 - Damage2
+                        await bot.say("{} does ".format(user.name) + str(Damage2) + "damage. {} has ".format(ctx.message.author.name) + str(HP1) + " HP left.")
+                    else:
+                        await bot.say("{} misses".format(user.name) + "{} has ".format(ctx.message.author.name) + str(HP1) + " HP left.")
+
 
      if (HP1 > 0):
-        embed = discord.Embed(title = "Result", description="{} wins. ".format(ctx.message.author.name) + "{} cannot defend and is dead.".format(user.name), color=0x03bc4d)
+        embed = discord.Embed(title = "Result", description="{} wins. ".format(ctx.message.author.name) + "{} loses and is dead.".format(user.name), color=0x03bc4d)
         await bot.say(embed=embed)
 
         role = discord.utils.get(user.server.roles, name='Muted(Meee)')
@@ -459,20 +457,22 @@ async def battle(ctx, user: discord.Member):
         await bot.say(embed=embed)
         await asyncio.sleep(x)
         await bot.remove_roles(user, role)
-        await bot.say("{} recovered his HP.".format(user.name))
+        await bot.say("{} is back".format(user.name))
 
      if (HP2 > 0):
-         embed = discord.Embed(title = "Result", description="{} wins. ".format(user.name) + "{} attacked and died lmao. You savage got your payoff.".format(ctx.message.author.name), color=0x03bc4d)
+         embed = discord.Embed(title = "Result", description="{} wins. ".format(user.name) + "{} loses and is dead.".format(ctx.message.author.name), color=0x03bc4d)
          await bot.say(embed=embed)
          role = discord.utils.get(user.server.roles, name='Muted(Meee)')
-         x = random.randint(50, 300)
+         x = random.randint(10, 100)
          embed = discord.Embed(title="{} gets muted for".format(ctx.message.author.name) + str(x) + " seconds. Hope he can recover in that time.", color=0x0072ff)
          embed.set_thumbnail(url=ctx.message.author.avatar_url)
          await bot.add_roles(ctx.message.author, role)
          await bot.say(embed=embed)
          await asyncio.sleep(x)
          await bot.remove_roles(ctx.message.author, role)
-         await bot.say("{} recovered his HP.".format(ctx.message.author.name))
+         await bot.say("{} is back".format(ctx.message.author.name))
+
+
             
 bot.run(os.getenv('TOKEN'))
 

@@ -430,7 +430,7 @@ async def battle(ctx, user: discord.Member):
                 await bot.say("Both players aggreed to a draw.")
             else:
 
-
+              if:(w < 21)
                 await bot.say("Round " + str(w))
                 a1 = random.randint(1, 20)
                 a2 = random.randint(1, 20)

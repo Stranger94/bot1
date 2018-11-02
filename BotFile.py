@@ -426,7 +426,7 @@ async def battle(ctx, user: discord.Member):
             
 
 
-            if w > 20:
+            if (w > 20 and w < 22):
                 await bot.say("Both players aggreed to a draw.")
             else:
 

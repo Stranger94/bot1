@@ -415,11 +415,11 @@ async def battle(ctx, user: discord.Member):
 
 #Battle
 
-    await asyncio.sleep(2)
+     await asyncio.sleep(2)
 
-    w = 0
+     w = 0
       
-    while (HP1 > 0 and HP2 > 2):
+     while (HP1 > 0 and HP2 > 2):
             await asyncio.sleep(2)
             w += 1
 

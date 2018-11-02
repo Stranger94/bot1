@@ -35,8 +35,7 @@ def cooldown(seconds):
         time.sleep(1)  
 
 client = discord.Client()
-bot = commands.Bot(command_prefix='~')
-
+bot = commands.Bot(command_prefix=("~", "-"))
 
 @bot.event
 async def on_ready():
@@ -49,7 +48,13 @@ async def on_ready():
     client.loop.create_task(status())
 
 
-    
+@commands.cooldown(1, 10, commands.BucketType.user)
+
+
+@bot.command(pass_context = True)
+async def info(ctx):
+       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 02.11.2018 12:30.\n Prefix: - or ~\nCommands: tempmute @x, guess 1, nuke @x, battle @x\nUpcoming features: Bug fix on tempmute/nuke (it removes mutes from mod), 2vs2 battles, edit battles in 1 message (not spam the chat), Mob attacks, more random messages in battles." , color=0x80f43d)
+       await bot.say(embed=embed)    
     
 @commands.cooldown(1, 10, commands.BucketType.user)
 

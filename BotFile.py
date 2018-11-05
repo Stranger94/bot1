@@ -18,7 +18,7 @@ global y
 
 
 
-deeef stopwatch(seconds):
+def stopwatch(seconds):
     start = time.time()
     time.clock()    
     elapsed = 0
@@ -61,7 +61,7 @@ async def info(ctx):
 
 @bot.command(pass_context = True)
 async def ping(ctx):
-       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 02.11.2018 10:30. Bug fixes." , color=0x80f43d)
+       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 05.11.2018 16:00. Tempmute/Nuke fixes." , color=0x80f43d)
        await bot.say(embed=embed)
       
 @commands.cooldown(1, 30, commands.BucketType.user)
@@ -78,16 +78,27 @@ async def mute(ctx, user: discord.Member):
     else:
        embed = discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0xff0000)
        await bot.say(embed=embed)
-@commands.cooldown(1, 30, commands.BucketType.user)
+@commands.cooldown(1, 120, commands.BucketType.user)
 
 @bot.command(pass_context=True)
 async def tempmute(ctx, user: discord.Member):
     #ctx.message.author.server_permissions.kick_members or 
-       if not ("444444522450124817" in (role.id for role in ctx.message.author.roles)):
-        if ("504819720197898252" in (role.id for role in ctx.message.author.roles)):
+  
+  if ("504819720197898252" in (role.id for role in ctx.message.author.roles)):
+
+    if ("444444522450124817" in (role.id for role in user.roles)):
+        
+       await bot.say("{} is already muted.".format(user.name))
+
+    else:
+       if ("444444522450124817" in (role.id for role in ctx.message.author.roles)):
+
+        await bot.say("Wait till you aren't muted anymore, {}.".format(ctx.message.author.name))
+
+       else:
 
             role = discord.utils.get(user.server.roles, name='Muted(Meee)') 
-            x = random.randint(1, 10)
+            x = random.randint(5, 10)
             embed = discord.Embed(title="{} has been muted for ".format(user.name) + str(x) + " minutes", color=0x0072ff)
 
             embed.set_thumbnail(url=user.avatar_url)
@@ -95,17 +106,20 @@ async def tempmute(ctx, user: discord.Member):
             await bot.say(embed=embed)
             rolex = discord.utils.get(user.server.roles, name='AngryMod') 
             await bot.remove_roles(ctx.message.author, rolex)
-            x = x*60
-            await asyncio.sleep(x)
+            x = x * 10
+            i = 1
+            while i <= x:
+                await asyncio.sleep(6)
+                await bot.add_roles(user, role)
+                i = i+1
             #stopwatch(x * 60)
 
             await bot.remove_roles(user, role)
             await asyncio.sleep(5)
-            await bot.add_roles(user, rolex)
-            embed = discord.Embed(title="{} recovered.".format(user.name) , color=0x0072ff)
+            embed = discord.Embed(title="{} is fully recovered.".format(user.name) , color=0x0072ff)
             await bot.say(embed=embed)
           
-        else:
+  else:
             embed = discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0xff0000)
             await bot.say(embed=embed)
 @commands.cooldown(2, 120, commands.BucketType.user)            
@@ -164,13 +178,20 @@ async def guess(ctx, y: int):
                         await bot.say(embed=embed) 
                  
                  
-@commands.cooldown(2, 300, commands.BucketType.user)
+@commands.cooldown(1, 3, commands.BucketType.user)
 
 @bot.command(pass_context=True)
 async def nuke(ctx, user: discord.Member):
-    
+   
+ 
+ if ("444444522450124817" in (role.id for role in ctx.message.author.roles)):
+    await bot.say("You failed and nuked yourself, {}.".format(ctx.message.author.name))   
+
+ else:
+   if not ("444444522450124817" in (role.id for role in user.roles)):
+
     role = discord.utils.get(user.server.roles, name='Muted(Meee)')
-    x = random.randint(1, 50)
+    x = random.randint(1, 40)
     embed = discord.Embed(title="{}, shut up for ".format(user.name) + str(x) + " seconds ploz.", color=0x0072ff)
     embed.set_thumbnail(url=user.avatar_url)
     await bot.add_roles(user, role)
@@ -178,6 +199,28 @@ async def nuke(ctx, user: discord.Member):
     await asyncio.sleep(x)
     await bot.remove_roles(user, role)
     await bot.say("{} is back".format(user.name))
+
+
+
+   else:
+    if ("444444522450124817" in (role.id for role in user.roles)):
+        await bot.say("Prepare to extend {}s mute.".format(user.name))
+        await bot.say("*Initializing Bigger Nuke*")
+        role = discord.utils.get(user.server.roles, name='Muted(Meee)')
+        await bot.remove_roles(user, role)
+        y = random.randint(40, 80)
+        embed = discord.Embed(title="{} nuked for ".format(user.name) + str(y) + " seconds.", color=0x0072ff)
+        embed.set_thumbnail(url=user.avatar_url)
+        await bot.add_roles(user, role)
+        await bot.say(embed=embed)
+        await asyncio.sleep(y)
+        await bot.remove_roles(user, role)
+        await bot.say("{} is back".format(user.name))
+
+
+
+
+
 
 @bot.command(pass_context=True)
 async def status(ctx):
@@ -476,7 +519,6 @@ async def battle(ctx, user: discord.Member):
          await asyncio.sleep(x)
          await bot.remove_roles(ctx.message.author, role)
          await bot.say("{} is back".format(ctx.message.author.name))
-
 
             
 bot.run(os.getenv('TOKEN'))

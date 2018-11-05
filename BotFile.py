@@ -297,7 +297,7 @@ async def on_ready():
         client.loop.create_task(botguess())
     
     
-@commands.cooldown(1, 500, commands.BucketType.user)            
+@commands.cooldown(1, 60, commands.BucketType.user)            
 @bot.command(pass_context=True)
 async def battle(ctx, user: discord.Member):
 
@@ -468,38 +468,67 @@ async def battle(ctx, user: discord.Member):
      w = 0
       
      while (HP1 > 0 and HP2 > 2):
-            await asyncio.sleep(2)
+            
             w += 1
 
 
             if (w > 20 and w < 22):
                 await bot.say("Both players aggreed to a draw.")
             else:
-                if w < 21:
+                if w == 1:
 
-                    await bot.say("Round " + str(w))
+                    msg = await bot.say("Round " + str(w))
+                    msgx = await bot.say("{} HP:  200".format(ctx.message.author.name))
+                    msgy = await bot.say("{} HP:  200".format(user.name))
+                    await asyncio.sleep(2)
                     a1 = random.randint(1, 20)
                     a2 = random.randint(1, 20)
                     if a1 <= Chance:
                         HP2 = HP2 - Damage1
-                        await bot.say("{} does ".format(ctx.message.author.name) + str(Damage1) + "damage. {} has ".format(user.name) + str(HP2) + " HP left.")
+                        msg1 = await bot.say("{} does ".format(ctx.message.author.name) + str(Damage1) + " damage.")
+                        await bot.edit_message(msgy, "{} HP: ".format(user.name) + str(HP2))
                     else: 
-                        await bot.say("{} misses".format(ctx.message.author.name) + "{} has ".format(user.name) + str(HP2) + " HP left.")
+                        msg1 = await bot.say("{} misses.".format(ctx.message.author.name))
 
                     if a2 <= Chance2:
                         HP1 = HP1 - Damage2
-                        await bot.say("{} does ".format(user.name) + str(Damage2) + "damage. {} has ".format(ctx.message.author.name) + str(HP1) + " HP left.")
+                        msg2 = await bot.say("{} does ".format(user.name) + str(Damage2) + " damage.")
+                        await bot.edit_message(msgx, "{} HP: ".format(ctx.message.author.name) + str(HP1))
+                        await asyncio.sleep(2)
                     else:
-                        await bot.say("{} misses".format(user.name) + "{} has ".format(ctx.message.author.name) + str(HP1) + " HP left.")
+                        msg2 = await bot.say("{} misses".format(user.name))
+                        await asyncio.sleep(2)
+                else:
+                    if (w > 1 and w < 21):
+                        await bot.edit_message(msg, "Round " + str(w))
+                        a1 = random.randint(1, 20)
+                        a2 = random.randint(1, 20)
+                        if a1 <= Chance:
+                            HP2 = HP2 - Damage1
+                            await bot.edit_message(msg1, "{} does ".format(ctx.message.author.name) + str(Damage1) + " damage.")
+                            await bot.edit_message(msgy, "{} HP: ".format(user.name) + str(HP2))
+
+                        else: 
+                            await bot.edit_message(msg1, "{} misses".format(ctx.message.author.name))
+                        if a2 <= Chance2:
+                            HP1 = HP1 - Damage2
+                            await bot.edit_message(msg2, "{} does ".format(user.name) + str(Damage2) + " damage.")
+                            await bot.edit_message(msgx, "{} HP: ".format(ctx.message.author.name) + str(HP1))
+                            await asyncio.sleep(2)
+                        else:
+                            await bot.edit_message(msg2, "{} misses".format(user.name))
+                            await asyncio.sleep(2)
 
 
      if (HP1 > 0):
+        await bot.delete_message(msg1)
+        await bot.delete_message(msg2)
         embed = discord.Embed(title = "Result", description="{} wins. ".format(ctx.message.author.name) + "{} loses and is dead.".format(user.name), color=0x03bc4d)
         await bot.say(embed=embed)
 
         role = discord.utils.get(user.server.roles, name='Muted(Meee)')
         x = random.randint(10, 100)
-        embed = discord.Embed(title="{} gets muted for".format(user.name) + str(x) + " seconds. Hope he can recover in that time.", color=0x0072ff)
+        embed = discord.Embed(title="{} gets muted for ".format(user.name) + str(x) + " seconds. Hope he can recover in that time.", color=0x0072ff)
         embed.set_thumbnail(url=user.avatar_url)
         await bot.add_roles(user, role)
         await bot.say(embed=embed)
@@ -508,6 +537,8 @@ async def battle(ctx, user: discord.Member):
         await bot.say("{} is back".format(user.name))
 
      if (HP2 > 0):
+         await bot.delete_message(msg1)
+         await bot.delete_message(msg2)
          embed = discord.Embed(title = "Result", description="{} wins. ".format(user.name) + "{} loses and is dead.".format(ctx.message.author.name), color=0x03bc4d)
          await bot.say(embed=embed)
          role = discord.utils.get(user.server.roles, name='Muted(Meee)')
@@ -519,7 +550,6 @@ async def battle(ctx, user: discord.Member):
          await asyncio.sleep(x)
          await bot.remove_roles(ctx.message.author, role)
          await bot.say("{} is back".format(ctx.message.author.name))
-
             
 bot.run(os.getenv('TOKEN'))
 

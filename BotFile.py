@@ -61,7 +61,7 @@ async def info(ctx):
 
 @bot.command(pass_context = True)
 async def ping(ctx):
-       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 05.11.2018 16:00. Tempmute/Nuke fixes." , color=0x80f43d)
+       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 05.11.2018 16:00. Tempmute/Nuke fixes. -battle will not spam anymore." , color=0x80f43d)
        await bot.say(embed=embed)
       
 @commands.cooldown(1, 30, commands.BucketType.user)

@@ -204,18 +204,7 @@ async def nuke(ctx, user: discord.Member):
 
    else:
     if ("444444522450124817" in (role.id for role in user.roles)):
-        await bot.say("Prepare to extend {}s mute.".format(user.name))
-        await bot.say("*Initializing Bigger Nuke*")
-        role = discord.utils.get(user.server.roles, name='Muted(Meee)')
-        await bot.remove_roles(user, role)
-        y = random.randint(40, 80)
-        embed = discord.Embed(title="{} nuked for ".format(user.name) + str(y) + " seconds.", color=0x0072ff)
-        embed.set_thumbnail(url=user.avatar_url)
-        await bot.add_roles(user, role)
-        await bot.say(embed=embed)
-        await asyncio.sleep(y)
-        await bot.remove_roles(user, role)
-        await bot.say("{} is back".format(user.name))
+        await bot.say("{} is muted already.".format(user.name))
 
 
 

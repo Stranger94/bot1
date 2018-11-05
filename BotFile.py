@@ -178,7 +178,7 @@ async def guess(ctx, y: int):
                         await bot.say(embed=embed) 
                  
                  
-@commands.cooldown(1, 3, commands.BucketType.user)
+@commands.cooldown(2, 300, commands.BucketType.user)
 
 @bot.command(pass_context=True)
 async def nuke(ctx, user: discord.Member):

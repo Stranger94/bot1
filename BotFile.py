@@ -527,7 +527,7 @@ async def battle(ctx, user: discord.Member):
         await bot.say(embed=embed)
 
         role = discord.utils.get(user.server.roles, name='Muted(Meee)')
-        x = random.randint(10, 100)
+        x = random.randint(10, 60)
         embed = discord.Embed(title="{} gets muted for ".format(user.name) + str(x) + " seconds. Hope he can recover in that time.", color=0x0072ff)
         embed.set_thumbnail(url=user.avatar_url)
         await bot.add_roles(user, role)
@@ -542,7 +542,7 @@ async def battle(ctx, user: discord.Member):
          embed = discord.Embed(title = "Result", description="{} wins. ".format(user.name) + "{} loses and is dead.".format(ctx.message.author.name), color=0x03bc4d)
          await bot.say(embed=embed)
          role = discord.utils.get(user.server.roles, name='Muted(Meee)')
-         x = random.randint(10, 100)
+         x = random.randint(60, 120)
          embed = discord.Embed(title="{} gets muted for".format(ctx.message.author.name) + str(x) + " seconds. Hope he can recover in that time.", color=0x0072ff)
          embed.set_thumbnail(url=ctx.message.author.avatar_url)
          await bot.add_roles(ctx.message.author, role)

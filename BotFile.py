@@ -10,62 +10,44 @@ import random
 import math
 import logging
 
-global a
-global b
-global x
-global y
-
-
-
-
-def stopwatch(seconds):
-    start = time.time()
-    time.clock()    
-    elapsed = 0
-    while elapsed < seconds:
-        elapsed = time.time() - start
-        time.sleep(1)  
-
-def cooldown(seconds):
-    start = time.time()
-    time.clock()    
-    elapsed = 0
-    while elapsed < seconds:
-        elapsed = time.time() - start
-        time.sleep(1)  
-
 client = discord.Client()
 bot = commands.Bot(command_prefix=("~", "-"))
 
+async def status():
+    await bot.wait_until_ready()
+    while not bot.is_closed:
+        await bot.change_presence(game=discord.Game(name="Strangers Bot"), status=discord.Status("online"))
+        await asyncio.sleep(20)
+        await bot.change_presence(game=discord.Game(name="~nuke someone"), status=discord.Status("idle"))
+        await asyncio.sleep(10)
+        await bot.change_presence(game=discord.Game(name="~guess a number"), status=discord.Status("dnd"))
+        await asyncio.sleep(10)
+        await bot.change_presence(game=discord.Game(name="Bored, pls help!"), status=discord.Status("idle"))
+        await asyncio.sleep(10)
+
 @bot.event
 async def on_ready():
-        print ("Ready")
-        print ("Bot Name: " + bot.user.name)
-        print ("Bot ID: " + bot.user.id)    
-        
-@client.event
-async def on_ready():
-    client.loop.create_task(status())
+    print('Logged in as')
+    print(bot.user.name)
+    print(bot.user.id)
+    print('------')
 
+bot.loop.create_task(status())
 
 @commands.cooldown(1, 10, commands.BucketType.user)
-
-
 @bot.command(pass_context = True)
 async def info(ctx):
-       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 02.11.2018 12:30.\n Prefix: - or ~\nCommands: tempmute @x, guess 1, nuke @x, battle @x\nUpcoming features: Bug fix on tempmute/nuke (it removes mutes from mod), 2vs2 battles, edit battles in 1 message (not spam the chat), Mob attacks, more random messages in battles." , color=0x80f43d)
+       embed = discord.Embed(title= "Bot by Stranger#1405", description="Prefix: -/~\n**Latest updates:** Added mob and noob attacks in -battle, which make it depend more on luck. Randomize Messages. \nOlder: Bug fixes of nuke/tempmute." , color=0x80f43d)
        await bot.say(embed=embed)    
-    
+
+
 @commands.cooldown(1, 10, commands.BucketType.user)
-
-
 @bot.command(pass_context = True)
 async def ping(ctx):
-       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 05.11.2018 16:00. Tempmute/Nuke fixes. -battle will not spam anymore." , color=0x80f43d)
+       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 06.11.2018 04:00.\nFor latest updates: Type -info\n_____________<:stoneswordnoob:509197316930928650>_____________" , color=0x80f43d)
        await bot.say(embed=embed)
       
 @commands.cooldown(1, 30, commands.BucketType.user)
-
 @bot.command(pass_context=True)
 async def mute(ctx, user: discord.Member):
     if ctx.message.author.server_permissions.kick_members:
@@ -78,8 +60,8 @@ async def mute(ctx, user: discord.Member):
     else:
        embed = discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0xff0000)
        await bot.say(embed=embed)
-@commands.cooldown(1, 120, commands.BucketType.user)
 
+@commands.cooldown(1, 120, commands.BucketType.user)
 @bot.command(pass_context=True)
 async def tempmute(ctx, user: discord.Member):
     #ctx.message.author.server_permissions.kick_members or 
@@ -122,6 +104,7 @@ async def tempmute(ctx, user: discord.Member):
   else:
             embed = discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0xff0000)
             await bot.say(embed=embed)
+
 @commands.cooldown(2, 120, commands.BucketType.user)            
 @bot.command(pass_context=True)
 async def guess(ctx, y: int):
@@ -179,7 +162,6 @@ async def guess(ctx, y: int):
                  
                  
 @commands.cooldown(2, 300, commands.BucketType.user)
-
 @bot.command(pass_context=True)
 async def nuke(ctx, user: discord.Member):
    
@@ -206,95 +188,28 @@ async def nuke(ctx, user: discord.Member):
     if ("444444522450124817" in (role.id for role in user.roles)):
         await bot.say("{} is muted already.".format(user.name))
 
-
-
-
-
-
-@bot.command(pass_context=True)
-async def status(ctx):
-    while True:
-        await bot.change_presence(game=discord.Game(name="Strangers Bot"), status=discord.Status("online"))
-        await asyncio.sleep(20)
-        await bot.change_presence(game=discord.Game(name="~nuke someone"), status=discord.Status("idle"))
-        await asyncio.sleep(10)
-        await bot.change_presence(game=discord.Game(name="~guess a number"), status=discord.Status("dnd"))
-        await asyncio.sleep(10)
-        await bot.change_presence(game=discord.Game(name="Bored, pls help!"), status=discord.Status("idle"))
-        await asyncio.sleep(10)
-@bot.command(pass_context=True)
-async def botguess(ctx):
-  while True:
-
-    await asyncio.sleep(2000)
-    if False:
-        y = random.randint(1, 30)
-        await bot.say("~guess " + str(y))
-        
-    else:
-        
-        if False:
-            embed = discord.Embed(title="Unknown constructions? Dick stuck in sink.", description="Guess from 1 to 30, and nothing weird!", color=0x660e1b)
-            await bot.say(embed=embed)
-        else:
-            y = random.randint(1, 30)
-            await bot.say("~guess " + str(y))
-            a = random.randint(1, 30)
-            await bot.say("Rolling...")
-            await asyncio.sleep(3)
-            await bot.say("...")
-            await asyncio.sleep(3)
-            await bot.say("...")
-            await asyncio.sleep(3)
-            await bot.say("I rolled a " + str(a) + "!") 
-            
-            if y == a:
-                 
-                
-                 embed = discord.Embed(title="I win, yay." , color=0x7cff30)
-                 await bot.say(embed=embed)
-            else:
-
-                if ((y + 2) == a or (y + 1) == a or (y - 1) == a or (y - 2) == a):
-                 
-                        embed = discord.Embed(title= "Very scarce oO", description="Dammit.", color=0xc99206)
-                        await bot.say(embed=embed)
-                        await bot.say("Ok...Rerolling.")
-                        a = random.randint(1, 30)
-                        await asyncio.sleep(3)
-                        await bot.say("...")
-                        await asyncio.sleep(3)
-                        await bot.say("...")
-                        await asyncio.sleep(3)
-                        await bot.say("I rolled a " + str(a) + "!") 
-                
-                        if y == a:
-                 
-  
-                            embed = discord.Embed(title="Congratulations to me, I win!" , color=0x7cff30)
-                            await bot.say(embed=embed)
-                  
-                        else:
-                            embed = discord.Embed(title="Nvm, fail!".format(ctx.message.author.name) , color=0xdb0020)
-                            await bot.say(embed=embed) 
-                else:
-                        embed = discord.Embed(title="Aw, no luck!", color=0xdb0020)
-                        await bot.say(embed=embed) 
-
-@bot.event
-async def on_ready():
-        client.loop.create_task(botguess())
-    
-    
 @commands.cooldown(1, 60, commands.BucketType.user)            
 @bot.command(pass_context=True)
-async def battle(ctx, user: discord.Member):
+async def battlex(ctx, user: discord.Member):
 
-     embed = discord.Embed(title = "A random day", description="{} challenges {} to a battle!".format(ctx.message.author.name, user.name) , color=0xbc4403)
+     Sce1 = "Forest"
+     #Sce2 = "Winter"
+     #Sce3 = "Ocean"
+
+     #s = random.randint(1, 3)
+
+     g = random.randint(1, 3)
+
+
+     if g == 1:
+      embed = discord.Embed(title = "Scenario: " + Sce1 , description="{} challenges {} to a battle in the ".format(ctx.message.author.name, user.name) + Sce1 + "!" , color=0xbc4403)
+     if g == 2:
+      embed = discord.Embed(title = "Scenario: " + Sce1 , description="{} attacks {} in the ".format(ctx.message.author.name, user.name) + Sce1 + "!" , color=0xbc4403)
+     if g == 3:
+      embed = discord.Embed(title = "Scenario: " + Sce1 , description="{} running into an ambush from {} in the ".format(user.name, ctx.message.author.name) + Sce1 + "!" , color=0xbc4403)
+
      await bot.say(embed=embed)
      await asyncio.sleep(5)
-
-
 
      if ("507312880211984384" in (role.id for role in ctx.message.author.roles)):
          Attack = 30
@@ -325,22 +240,30 @@ async def battle(ctx, user: discord.Member):
 
      if ("507324396252299268" in (role.id for role in ctx.message.author.roles)):
          Defense = 8
+         MDefense = 27
      else:
          if ("507324354577825793" in (role.id for role in ctx.message.author.roles)):
              Defense = 6
+             MDefense = 23
          else: 
              if ("507324314820018217" in (role.id for role in ctx.message.author.roles)):
                  Defense = 5
+                 MDefense = 19
              else:
                  if ("507324278547677219" in (role.id for role in ctx.message.author.roles)):
                      Defense = 4
+                     MDefense = 13
                  else: 
                      if ("507324244053590026" in (role.id for role in ctx.message.author.roles)):
                         Defense = 2
+                        MDefense = 8
                      else: 
                          if ("507324191117148172" in (role.id for role in ctx.message.author.roles)):
                              Defense = 1
-                         else: Defense = 0
+                             MDefense = 4
+                         else: 
+                               Defense = 0
+                               MDefense = 0
 
 
 
@@ -367,22 +290,30 @@ async def battle(ctx, user: discord.Member):
 
      if ("507324396252299268" in (role.id for role in user.roles)):
          Defense2 = 8
+         MDefense2 = 27
      else:
          if ("507324354577825793" in (role.id for role in user.roles)):
              Defense2 = 6
+             MDefense2 = 23
          else: 
              if ("507324314820018217" in (role.id for role in user.roles)):
                  Defense2 = 5
+                 MDefense2 = 19
              else:
                  if ("507324278547677219" in (role.id for role in user.roles)):
                      Defense2 = 4
+                     MDefense2 = 13
                  else: 
                      if ("507324244053590026" in (role.id for role in user.roles)):
                         Defense2 = 2
+                        MDefense2 = 8
                      else: 
                          if ("507324191117148172" in (role.id for role in user.roles)):
                              Defense2 = 1
-                         else: Defense2 = 0
+                             MDefense2 = 4
+                         else: 
+                             Defense2 = 0
+                             MDefense2 = 0
      
      embed = discord.Embed(title = "Battle begins", description="{} ".format(ctx.message.author.name) + str1 + " to attack {}".format(user.name), color=0x03bc4d)
      await bot.say(embed=embed)
@@ -450,11 +381,35 @@ async def battle(ctx, user: discord.Member):
                                     else:
                                           Chance2 = 8
 
-#Battle
-
      await asyncio.sleep(2)
 
      w = 0
+
+     WolfD = 40
+     SpiderD = 30
+     FoxD = 40
+     BearD = 70
+     PiranhaD = 40
+     CrabD = 25
+     NoobD = 19
+
+     WolfD1 = WolfD - MDefense
+     SpiderD1 = SpiderD - MDefense
+     FoxD1 = FoxD - MDefense
+     BearD1 = BearD - MDefense
+     PiranhaD1 = PiranhaD - MDefense
+     CrabD1 = CrabD - MDefense
+     NoobD1 = NoobD - Defense
+
+     WolfD2 = WolfD - MDefense2
+     SpiderD2 = SpiderD - MDefense2
+     FoxD2 = FoxD - MDefense2
+     BearD2 = BearD - MDefense2
+     PiranhaD2 = PiranhaD - MDefense2
+     CrabD2 = CrabD - MDefense2
+     NoobD2 = NoobD - Defense2
+
+     
       
      while (HP1 > 0 and HP2 > 2):
             
@@ -487,34 +442,118 @@ async def battle(ctx, user: discord.Member):
                     else:
                         msg2 = await bot.say("{} misses".format(user.name))
                         await asyncio.sleep(2)
+                    msgz = await bot.say("Noobs are getting interested in the fight. Animals are getting in the way.")
+
                 else:
                     if (w > 1 and w < 21):
                         await bot.edit_message(msg, "Round " + str(w))
                         a1 = random.randint(1, 20)
                         a2 = random.randint(1, 20)
+                        e11 = random.randint(1, 20)     #wolf attack chance 15%
+                        e21 = random.randint(1, 20)     #spider attack chance 10%
+                        e31 = random.randint(1, 20)     #crab attack chance 10%
+                        e41 = random.randint(1, 20)     #noob attack chance 10%
+                        e12 = random.randint(1, 20)     #wolf attack chance 5%
+                        e22 = random.randint(1, 20)     #spider attack chance 10%
+                        e32 = random.randint(1, 20)     #crab attack chance 5%
+                        e42 = random.randint(1, 20)     #noob attack chance 20%
+
                         if a1 <= Chance:
                             HP2 = HP2 - Damage1
-                            await bot.edit_message(msg1, "{} does ".format(ctx.message.author.name) + str(Damage1) + " damage.")
-                            await bot.edit_message(msgy, "{} HP: ".format(user.name) + str(HP2))
+                            q1 = "{} does ".format(ctx.message.author.name) + str(Damage1) + " damage."
 
                         else: 
-                            await bot.edit_message(msg1, "{} misses".format(ctx.message.author.name))
+                            q1 = "{} misses".format(ctx.message.author.name)
+
                         if a2 <= Chance2:
                             HP1 = HP1 - Damage2
-                            await bot.edit_message(msg2, "{} does ".format(user.name) + str(Damage2) + " damage.")
-                            await bot.edit_message(msgx, "{} HP: ".format(ctx.message.author.name) + str(HP1))
+                            q2 = "{} does ".format(user.name) + str(Damage2) + " damage."
                             await asyncio.sleep(2)
                         else:
-                            await bot.edit_message(msg2, "{} misses".format(user.name))
+                            q2 = "{} misses".format(user.name)
                             await asyncio.sleep(2)
+
+            MobDamage1 = 0
+            MobDamage2 = 0
+            w00 = ""
+            w0 = ""
+            if (w > 1 and w < 21):
+                if e11 <= 3:
+                    w1 = (" <:Dwolf:504455555255894056>")
+                    MobDamage1 = MobDamage1 + WolfD1
+                    w0 = "from"
+                else:
+                    w1 = ""
+                if e21 <= 2:
+                    w2 = " <:Dspider:504451731481034767>"
+                    MobDamage1 = MobDamage1 + SpiderD1
+                    w0 = "from"
+                else:
+                    w2 = ""
+                if e31 <= 2:
+                    w3 = " <:Dcrab:509197291890933760>"
+                    MobDamage1 = MobDamage1 + CrabD1
+                    w0 = "from"
+                else:
+                    w3 = ""
+                if e41 <= 2:
+                    w4 = " <:stoneswordnoob:509197316930928650>"
+                    MobDamage1 = MobDamage1 + NoobD1
+                    w0 = "from"
+                else:
+                    w4 = ""   
+                if e12 <= 1:
+                    w5 = (" <:Dwolf:504455555255894056>")
+                    MobDamage2 = MobDamage2 + WolfD2
+                    w00 = "from"
+                else:
+                    w5 = ""
+                if e22 <= 2:
+                    w6 = " <:Dspider:504451731481034767>"
+                    MobDamage2 = MobDamage2 + SpiderD2
+                    w00 = "from"
+                else:
+                    w6 = ""                
+                if e32 <= 1:
+                    w7 = " <:Dcrab:509197291890933760>"
+                    MobDamage2 = MobDamage2 + CrabD2
+                    w00 = "from"
+                else:
+                    w7 = ""
+                if e42 <= 4:
+                    w8 = " <:stoneswordnoob:509197316930928650>"
+                    MobDamage2 = MobDamage2 + NoobD2
+                    w00 = "from"
+                else:
+                    w8 = ""
+                    
+                
+                HP1 = HP1 - MobDamage1
+                HP2 = HP2 - MobDamage2
+                q11 = "{} **HP: ".format(user.name) + str(HP2) + "**"
+                q22 = "{} **HP: ".format(ctx.message.author.name) + str(HP1) + "**"
+
+                await bot.edit_message(msg1, q1)
+                await bot.edit_message(msg2, q2)
+                await bot.edit_message(msgz, "{} takes ".format(ctx.message.author.name) + str(MobDamage1) + " damage " + w0 + w1 + w2 + w3 + w4 + ". {} takes ".format(user.name) + str(MobDamage2) + " damage " + w00 + w5 + w6 + w7 + w8 + ".")        
+                await asyncio.sleep(2)
+                await bot.edit_message(msgy, q11)
+                await bot.edit_message(msgx, q22)
+                await asyncio.sleep(3)
+
+
+
+
 
 
      if (HP1 > 0):
         await bot.delete_message(msg1)
         await bot.delete_message(msg2)
+        await bot.delete_message(msgz)
+        await bot.delete_message(msgx)
+        await bot.delete_message(msgy)
         embed = discord.Embed(title = "Result", description="{} wins. ".format(ctx.message.author.name) + "{} loses and is dead.".format(user.name), color=0x03bc4d)
         await bot.say(embed=embed)
-
         role = discord.utils.get(user.server.roles, name='Muted(Meee)')
         x = random.randint(10, 60)
         embed = discord.Embed(title="{} gets muted for ".format(user.name) + str(x) + " seconds. Hope he can recover in that time.", color=0x0072ff)
@@ -528,6 +567,9 @@ async def battle(ctx, user: discord.Member):
      if (HP2 > 0):
          await bot.delete_message(msg1)
          await bot.delete_message(msg2)
+         await bot.delete_message(msgz)
+         await bot.delete_message(msgx)
+         await bot.delete_message(msgy)
          embed = discord.Embed(title = "Result", description="{} wins. ".format(user.name) + "{} loses and is dead.".format(ctx.message.author.name), color=0x03bc4d)
          await bot.say(embed=embed)
          role = discord.utils.get(user.server.roles, name='Muted(Meee)')
@@ -539,6 +581,40 @@ async def battle(ctx, user: discord.Member):
          await asyncio.sleep(x)
          await bot.remove_roles(ctx.message.author, role)
          await bot.say("{} is back".format(ctx.message.author.name))
-            
+     
+     if (HP2 < 0 and HP1 < 0):
+        await bot.delete_message(msg1)
+        await bot.delete_message(msg2)
+        await bot.delete_message(msgz)
+        await bot.delete_message(msgx)
+        await bot.delete_message(msgy)
+        await bot.say("Both players died!")
+        x = random.randint(10, 60)
+        y = random.randint(10, 60)
+        yneu = y + 40
+        role = discord.utils.get(user.server.roles, name='Muted(Meee)')
+        embed = discord.Embed(description="{} gets muted for ".format(user.name) + str(x) + " seconds. {} gets muted for ".format(ctx.message.author.name) + str(yneu) + " seconds.", color=0x0072ff)
+        await bot.say(embed=embed)
+        if (yneu >= x):
+            await bot.add_roles(user, role)
+            await bot.add_roles(ctx.message.author, role)
+            await asyncio.sleep(x)
+            await bot.remove_roles(user, role)
+            await bot.say("{} is back".format(user.name))
+            yneu = yneu - x
+            await asyncio.sleep(yneu)
+            await bot.remove_roles(ctx.message.author, role)
+            await bot.say("{} is back".format(ctx.message.author.name))
+        else:
+            await bot.add_roles(user, role)
+            await bot.add_roles(ctx.message.author, role)
+            await asyncio.sleep(yneu)
+            await bot.remove_roles(ctx.message.author, role)
+            await bot.say("{} is back".format(ctx.message.author.name))
+            x = x - yneu
+            await asyncio.sleep(x)
+            await bot.remove_roles(user, role)
+            await bot.say("{} is back".format(user.name))
+
 bot.run(os.getenv('TOKEN'))
 

@@ -190,7 +190,7 @@ async def nuke(ctx, user: discord.Member):
 
 @commands.cooldown(1, 60, commands.BucketType.user)            
 @bot.command(pass_context=True)
-async def battlex(ctx, user: discord.Member):
+async def battle(ctx, user: discord.Member):
 
      Sce1 = "Forest"
      #Sce2 = "Winter"

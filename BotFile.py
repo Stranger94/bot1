@@ -188,7 +188,7 @@ async def nuke(ctx, user: discord.Member):
     if ("444444522450124817" in (role.id for role in user.roles)):
         await bot.say("{} is muted already.".format(user.name))
 
-@commands.cooldown(1, 60, commands.BucketType.user)            
+@commands.cooldown(1, 120, commands.BucketType.user)            
 @bot.command(pass_context=True)
 async def battle(ctx, user: discord.Member):
 

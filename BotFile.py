@@ -44,7 +44,7 @@ async def info(ctx):
 @commands.cooldown(1, 10, commands.BucketType.user)
 @bot.command(pass_context = True)
 async def ping(ctx):
-       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 11.11.2018 19:00.\nFor latest updates: Type -info\n_____________<:stoneswordnoob:509197316930928650>_____________" , color=0x80f43d)
+       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 11.11.2018 21:49.\nFor latest updates: Type -info\n_____________<:stoneswordnoob:509197316930928650>_____________" , color=0x80f43d)
        await bot.say(embed=embed)
       
 @commands.cooldown(1, 30, commands.BucketType.user)

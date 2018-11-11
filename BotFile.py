@@ -37,14 +37,14 @@ bot.loop.create_task(status())
 @commands.cooldown(1, 10, commands.BucketType.user)
 @bot.command(pass_context = True)
 async def info(ctx):
-       embed = discord.Embed(title= "Bot by Stranger#1405", description="Prefix: -/~\n**Latest updates:** Added mob and noob attacks in -battle, which make it depend more on luck. Randomize Messages. \nOlder: Bug fixes of nuke/tempmute." , color=0x80f43d)
+       embed = discord.Embed(title= "Bot by Stranger#1405", description="Prefix: -/~\n**Latest updates:** You can run now, when battled with -battle, there will be added more options soon (**using badages for example**)." , color=0x80f43d)
        await bot.say(embed=embed)    
 
 
 @commands.cooldown(1, 10, commands.BucketType.user)
 @bot.command(pass_context = True)
 async def ping(ctx):
-       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 06.11.2018 04:00.\nFor latest updates: Type -info\n_____________<:stoneswordnoob:509197316930928650>_____________" , color=0x80f43d)
+       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 11.11.2018 19:00.\nFor latest updates: Type -info\n_____________<:stoneswordnoob:509197316930928650>_____________" , color=0x80f43d)
        await bot.say(embed=embed)
       
 @commands.cooldown(1, 30, commands.BucketType.user)
@@ -315,6 +315,22 @@ async def battle(ctx, user: discord.Member):
                              Defense2 = 0
                              MDefense2 = 0
      
+     newx1 = await bot.say("{}, type 'run' if you want to try to escape!".format(user.name))
+     checkmsg1 = await bot.wait_for_message(timeout= 10.0, author= user, content="run", check= None)
+
+     await asyncio.sleep(10)
+     try:
+                if checkmsg1.content == "run":
+                                    await bot.delete_message(newx1)
+
+                                    await bot.say("{} runs away.".format(user.name))
+                                    return
+
+     except:
+                                    await bot.delete_message(newx1)
+    
+    
+    
      embed = discord.Embed(title = "Battle begins", description="{} ".format(ctx.message.author.name) + str1 + " to attack {}".format(user.name), color=0x03bc4d)
      await bot.say(embed=embed)
 

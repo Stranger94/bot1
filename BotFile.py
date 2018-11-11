@@ -492,7 +492,7 @@ async def battle(ctx, user: discord.Member):
                         if (band2 == 4 or band2 == 9 or band2 == 14 or band2 == 19):
 
                                 
-                                newx2 = await bot.say("{}, use garlic for regeneration?(Type: 'yes')".format(user.name))
+                                newx2 = await bot.say("{}, use garlic for regeneration?(Type: 'yes' (**FAST**))".format(user.name))
                                 checkmsg2 = await bot.wait_for_message(timeout= 3.0, author= user, content="yes", check= None)
 
                                 await asyncio.sleep(3)
@@ -521,7 +521,7 @@ async def battle(ctx, user: discord.Member):
 
 
                         if (band1 == 4 or band1 == 9 or band1 == 14 or band1 == 19):
-                                newx3 = await bot.say("{}, use garlic for regeneration?(Type: 'yes')".format(ctx.message.author.name))
+                                newx3 = await bot.say("{}, use garlic for regeneration?(Type: 'yes' (**FAST**))".format(ctx.message.author.name))
                                 checkmsg3 = await bot.wait_for_message(timeout= 3.0, author= ctx.message.author, content="yes", check= None)
 
                                 await asyncio.sleep(3)

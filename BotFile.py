@@ -191,7 +191,8 @@ async def nuke(ctx, user: discord.Member):
 @commands.cooldown(1, 120, commands.BucketType.user)            
 @bot.command(pass_context=True)
 async def battle(ctx, user: discord.Member):
-
+     band1 = random.randint(1, 5)
+     band2 = random.randint(1, 5)
      Sce1 = "Forest"
      #Sce2 = "Winter"
      #Sce3 = "Ocean"
@@ -209,7 +210,6 @@ async def battle(ctx, user: discord.Member):
       embed = discord.Embed(title = "Scenario: " + Sce1 , description="{} running into an ambush from {} in the ".format(user.name, ctx.message.author.name) + Sce1 + "!" , color=0xbc4403)
 
      await bot.say(embed=embed)
-     await asyncio.sleep(5)
 
      if ("507312880211984384" in (role.id for role in ctx.message.author.roles)):
          Attack = 30
@@ -488,6 +488,69 @@ async def battle(ctx, user: discord.Member):
                         else:
                             q2 = "{} misses".format(user.name)
                             await asyncio.sleep(2)
+                            
+                        if (band2 == 4 or band2 == 9 or band2 == 14 or band2 == 19):
+
+                                
+                                newx2 = await bot.say("{}, use garlic for regeneration?(Type: 'yes')".format(user.name))
+                                checkmsg2 = await bot.wait_for_message(timeout= 3.0, author= user, content="yes", check= None)
+
+                                await asyncio.sleep(3)
+                                try:
+                                    if checkmsg2.content == "yes":
+                                        await bot.delete_message(newx2)
+
+                                        mgg2 = await bot.say("{} recovers 20 HP.".format(user.name))
+                                        
+                                        if HP2 <= 180:
+                                            HP2 = HP2 + 20
+                                        else:
+                                            HP2 = 200
+                                        
+
+                                except:
+                                        mgg2 = await bot.say("{} recovers 10 HP.".format(user.name))                                        
+                                        
+                                        if HP2 <= 190:
+                                            HP2 = HP2 + 10
+                                        else:
+                                            HP2 = 200
+
+
+                                    
+
+
+                        if (band1 == 4 or band1 == 9 or band1 == 14 or band1 == 19):
+                                newx3 = await bot.say("{}, use garlic for regeneration?(Type: 'yes')".format(ctx.message.author.name))
+                                checkmsg3 = await bot.wait_for_message(timeout= 3.0, author= ctx.message.author, content="yes", check= None)
+
+                                await asyncio.sleep(3)
+                                try:
+                                    if checkmsg3.content == "yes":
+                                        await bot.delete_message(newx3)
+
+                                        mgg3 = await bot.say("{} recovers 20 HP.".format(ctx.message.author.name))
+                                        
+                                        if HP1 <= 180:
+                                            HP1 = HP1 + 20
+                                        else:
+                                            HP1 = 200
+                                        
+
+                                except:
+                                        mgg3 = await bot.say("{} recovers 10 HP.".format(ctx.message.author.name))                                        
+                                        
+                                        if HP1 <= 190:
+                                            HP1 = HP1 + 10
+                                        else:
+                                            HP1 = 200
+
+
+
+                        band1 = band1 + 1
+                        band2 = band2 + 1
+
+                           
 
             MobDamage1 = 0
             MobDamage2 = 0
@@ -553,6 +616,12 @@ async def battle(ctx, user: discord.Member):
                 await bot.edit_message(msg2, q2)
                 await bot.edit_message(msgz, "{} takes ".format(ctx.message.author.name) + str(MobDamage1) + " damage " + w0 + w1 + w2 + w3 + w4 + ". {} takes ".format(user.name) + str(MobDamage2) + " damage " + w00 + w5 + w6 + w7 + w8 + ".")        
                 await asyncio.sleep(2)
+                
+                try:
+                    await bot.delete_message(mgg2)
+                    await bot.delete_message(mgg3)
+                except: 
+                    True
                 await bot.edit_message(msgy, q11)
                 await bot.edit_message(msgx, q22)
                 await asyncio.sleep(3)

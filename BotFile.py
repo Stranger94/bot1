@@ -39,14 +39,14 @@ bot.loop.create_task(status())
 @commands.cooldown(1, 10, commands.BucketType.user)
 @bot.command(pass_context = True)
 async def info(ctx):
-       embed = discord.Embed(title= "Bot by Stranger#1405", description="Prefix: -/~\n**Latest updates:** You can run now, when battled with -battle, there will be added more options soon (**using badages for example**)." , color=0x80f43d)
+       embed = discord.Embed(title= "Bot by Stranger#1405", description="Prefix: -/~\n**Latest updates:** Bot will reply on hi sometimes :). You can run now, when battled with -battle, there will be added more options soon (**using badages for example**)." , color=0x80f43d)
        await bot.say(embed=embed)    
 
 
 @commands.cooldown(1, 10, commands.BucketType.user)
 @bot.command(pass_context = True)
 async def ping(ctx):
-       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 11.11.2018 21:49.\nFor latest updates: Type -info\n_____________<:stoneswordnoob:509197316930928650>_____________" , color=0x80f43d)
+       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 13.11.2018 21:49.\nFor latest updates: Type -info\n_____________<:stoneswordnoob:509197316930928650>_____________" , color=0x80f43d)
        await bot.say(embed=embed)
       
 @commands.cooldown(1, 30, commands.BucketType.user)
@@ -705,7 +705,7 @@ async def battle(ctx, user: discord.Member):
 
 @bot.event
 async def on_message(message):
-     delta1 = datetime.timedelta(hours = 1, minutes = 2)  
+     delta1 = datetime.timedelta(hours = 1, minutes = 5)  
      now = datetime.datetime.now()
 
      then = now - delta1

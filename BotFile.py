@@ -9,6 +9,8 @@ import os
 import random
 import math
 import logging
+import datetime
+from discord.utils import get
 
 client = discord.Client()
 bot = commands.Bot(command_prefix=("~", "-"))
@@ -701,5 +703,52 @@ async def battle(ctx, user: discord.Member):
             await bot.remove_roles(user, role)
             await bot.say("{} is back".format(user.name))
 
+@bot.event
+async def on_message(message):
+     delta1 = datetime.timedelta(hours = 1, minutes = 2)  
+     now = datetime.datetime.now()
+
+     then = now - delta1
+     counter = 0
+
+     #so far its fine
+
+     async for message in bot.logs_from(message.channel, limit=2, after = then): #not counting...
+            counter += 1
+     if counter == 1:
+        if message.content.startswith('Hi') or message.content.startswith('hi') or message.content.startswith('hey') or message.content.startswith('Hey'):
+            
+            embed = discord.Embed(title="Hi", description="Have a great day!", color=0x1eff38)
+            embed.set_author(name="LETS'S GOOOO", url = "https://images-ext-2.discordapp.net/external/sshKs1hxko3YR-vILfivBNCMlQ33YN8uE0zdJhiw8JY/%3Fsize%3D256/https/cdn.discordapp.com/avatars/506186624032571412/7193d48d0f345f633b2959f26b4512b2.png", icon_url="https://vignette.wikia.nocookie.net/yoshi/images/8/8d/Yoshi_SSBU.png/revision/latest?cb=20180628045711")
+            embed1 = await bot.send_message(message.channel, embed = embed)            
+            await asyncio.sleep(1)
+
+            x1 = await bot.send_message(message.channel, "──────────────████──████────────────\n────────────██░░▒▒██░░▒▒██──────────\n──────────██░░────────▒▒▓▓██────────\n──────────██──██──██────▓▓████████──\n")
+            x2 = await bot.send_message(message.channel, "──────────██──██──██──────██░░░░▒▒██\n──────██████──────────────████▒▒▓▓██\n────██░░░░░░██──▓▓──────▓▓░░░░██████\n──██░░────░░░░▓▓░░▓▓▓▓▓▓░░──░░▒▒██░░\n")
+            x3 = await bot.send_message(message.channel, "──████──██░░░░░░▒▒░░──────░░░░▒▒██▒▒\n██░░░░░░░░░░░░░░▒▒▒▒────────▒▒▓▓██▓▓\n██░░░░░░░░░░░░▒▒▒▒▓▓────────▒▒▓▓████\n██▒▒░░░░░░▒▒▒▒▒▒▓▓██░░────░░▓▓▓▓████\n")
+            x4 = await bot.send_message(message.channel, "██▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓████░░░░▓▓▓▓██▒▒██\n──██▒▒▒▒▒▒▓▓▓▓▓▓▓▓██──░░▓▓▓▓██████──\n────████▓▓▓▓▓▓▓▓██──░░▒▒▒▒▓▓██▒▒██──\n────────████████████▒▒▒▒▒▒▒▒▓▓██────\n")
+            x5 = await bot.send_message(message.channel, "────────██▒▒──▒▒██░░░░▒▒──────██────\n────████▒▒▒▒▒▒████░░░░██──────██────\n██████──██████──██░░░░████────██────\n██░░▒▒██──────████░░░░░░████──██────\n")
+            x6 = await bot.send_message(message.channel, "██████──██████──██░░░░████────██────\n██░░▒▒██──────████░░░░░░████──██────\n██──▓▓▒▒████████▒▒░░░░██░░████──────\n██────▓▓▒▒░░░░██▒▒░░────░░██████────\n")
+            x7 = await bot.send_message(message.channel, "──██░░────▒▒▒▒██▓▓▒▒░░░░░░██████────\n──██░░░░──────░░██▓▓▒▒░░████░░██────\n────████████████░░██████▒▒████──────\n────██▓▓▒▒░░░░██▒▒▒▒██████──────────\n")
+            x8 = await bot.send_message(message.channel, "────██▓▓▒▒░░░░██████░░██████────────\n──██▓▓▓▓▓▓▒▒──░░██▓▓▒▒░░░░──██──────\n──██▓▓▓▓▒▒░░░░░░██▓▓▓▓▒▒▒▒░░██──────\n──████████████████████████████──────\n")
+            
+            
+            await asyncio.sleep(2)
+
+            await bot.delete_message(x8)
+            await bot.delete_message(x7)
+            await bot.delete_message(x6)
+            await bot.delete_message(x5)
+            await bot.delete_message(x4)
+            await bot.delete_message(x3)
+            await bot.delete_message(x2)
+            await bot.delete_message(x1)
+
+            embed2 = discord.Embed(title = "I don't reply to everyone :D" , description="<:gofight:509374882346434560>")
+            xxx= await bot.edit_message(embed1, embed = embed2)
+            
+            emoji = get(bot.get_all_emojis(), name='plz')
+            await bot.add_reaction(message= xxx, emoji = emoji)
+            
 bot.run(os.getenv('TOKEN'))
 

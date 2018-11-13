@@ -39,7 +39,7 @@ bot.loop.create_task(status())
 @commands.cooldown(1, 10, commands.BucketType.user)
 @bot.command(pass_context = True)
 async def info(ctx):
-       embed = discord.Embed(title= "Bot by Stranger#1405", description="Prefix: -/~\n**Latest updates:** Bot will reply on hi sometimes :). You can run now, when battled with -battle, there will be added more options soon (**using badages for example**)." , color=0x80f43d)
+       embed = discord.Embed(title= "Bot by Stranger#1405", description="Prefix: -/~\n**Latest updates:** Bot will reply sometimes on hi. You can run now, when battled with -battle, there will be added more options soon (**using badages for example**)." , color=0x80f43d)
        await bot.say(embed=embed)    
 
 

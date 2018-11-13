@@ -705,17 +705,21 @@ async def battle(ctx, user: discord.Member):
 
 @bot.event
 async def on_message(message):
-     delta1 = datetime.timedelta(hours = 1, minutes = 5)  
-     now = datetime.datetime.now()
 
-     then = now - delta1
-     counter = 0
+  if message.content.startswith('Hi') or message.content.startswith('hi') or message.content.startswith('hey') or message.content.startswith('Hey'):
+
+
+      delta1 = datetime.timedelta(hours = 1, minutes = 5)  
+      now = datetime.datetime.now()
+
+      then = now - delta1
+      counter = 0
 
      #so far its fine
 
-     async for message in bot.logs_from(message.channel, limit=2, after = then): #not counting...
+      async for message in bot.logs_from(message.channel, limit=2, after = then): #not counting...
             counter += 1
-     if counter == 1:
+      if counter == 1:
         if message.content.startswith('Hi') or message.content.startswith('hi') or message.content.startswith('hey') or message.content.startswith('Hey'):
             
             embed = discord.Embed(title="Hi", description="Have a great day!", color=0x1eff38)
@@ -723,32 +727,36 @@ async def on_message(message):
             embed1 = await bot.send_message(message.channel, embed = embed)            
             await asyncio.sleep(1)
 
-            #x1 = await bot.send_message(message.channel, "──────────────████──████────────────\n────────────██░░▒▒██░░▒▒██──────────\n──────────██░░────────▒▒▓▓██────────\n──────────██──██──██────▓▓████████──\n")
-            #x2 = await bot.send_message(message.channel, "──────────██──██──██──────██░░░░▒▒██\n──────██████──────────────████▒▒▓▓██\n────██░░░░░░██──▓▓──────▓▓░░░░██████\n──██░░────░░░░▓▓░░▓▓▓▓▓▓░░──░░▒▒██░░\n")
-            #x3 = await bot.send_message(message.channel, "──████──██░░░░░░▒▒░░──────░░░░▒▒██▒▒\n██░░░░░░░░░░░░░░▒▒▒▒────────▒▒▓▓██▓▓\n██░░░░░░░░░░░░▒▒▒▒▓▓────────▒▒▓▓████\n██▒▒░░░░░░▒▒▒▒▒▒▓▓██░░────░░▓▓▓▓████\n")
-            #x4 = await bot.send_message(message.channel, "██▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓████░░░░▓▓▓▓██▒▒██\n──██▒▒▒▒▒▒▓▓▓▓▓▓▓▓██──░░▓▓▓▓██████──\n────████▓▓▓▓▓▓▓▓██──░░▒▒▒▒▓▓██▒▒██──\n────────████████████▒▒▒▒▒▒▒▒▓▓██────\n")
-            #x5 = await bot.send_message(message.channel, "────────██▒▒──▒▒██░░░░▒▒──────██────\n────████▒▒▒▒▒▒████░░░░██──────██────\n██████──██████──██░░░░████────██────\n██░░▒▒██──────████░░░░░░████──██────\n")
-            #x6 = await bot.send_message(message.channel, "██████──██████──██░░░░████────██────\n██░░▒▒██──────████░░░░░░████──██────\n██──▓▓▒▒████████▒▒░░░░██░░████──────\n██────▓▓▒▒░░░░██▒▒░░────░░██████────\n")
-            #x7 = await bot.send_message(message.channel, "──██░░────▒▒▒▒██▓▓▒▒░░░░░░██████────\n──██░░░░──────░░██▓▓▒▒░░████░░██────\n────████████████░░██████▒▒████──────\n────██▓▓▒▒░░░░██▒▒▒▒██████──────────\n")
-            #x8 = await bot.send_message(message.channel, "────██▓▓▒▒░░░░██████░░██████────────\n──██▓▓▓▓▓▓▒▒──░░██▓▓▒▒░░░░──██──────\n──██▓▓▓▓▒▒░░░░░░██▓▓▓▓▒▒▒▒░░██──────\n──████████████████████████████──────\n")
+            x1 = await bot.send_message(message.channel, "──────────────████──████────────────\n────────────██░░▒▒██░░▒▒██──────────\n──────────██░░────────▒▒▓▓██────────\n──────────██──██──██────▓▓████████──\n")
+            x2 = await bot.send_message(message.channel, "──────────██──██──██──────██░░░░▒▒██\n──────██████──────────────████▒▒▓▓██\n────██░░░░░░██──▓▓──────▓▓░░░░██████\n──██░░────░░░░▓▓░░▓▓▓▓▓▓░░──░░▒▒██░░\n")
+            x3 = await bot.send_message(message.channel, "──████──██░░░░░░▒▒░░──────░░░░▒▒██▒▒\n██░░░░░░░░░░░░░░▒▒▒▒────────▒▒▓▓██▓▓\n██░░░░░░░░░░░░▒▒▒▒▓▓────────▒▒▓▓████\n██▒▒░░░░░░▒▒▒▒▒▒▓▓██░░────░░▓▓▓▓████\n")
+            x4 = await bot.send_message(message.channel, "██▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓████░░░░▓▓▓▓██▒▒██\n──██▒▒▒▒▒▒▓▓▓▓▓▓▓▓██──░░▓▓▓▓██████──\n────████▓▓▓▓▓▓▓▓██──░░▒▒▒▒▓▓██▒▒██──\n────────████████████▒▒▒▒▒▒▒▒▓▓██────\n")
+            x5 = await bot.send_message(message.channel, "────────██▒▒──▒▒██░░░░▒▒──────██────\n────████▒▒▒▒▒▒████░░░░██──────██────\n██████──██████──██░░░░████────██────\n██░░▒▒██──────████░░░░░░████──██────\n")
+            x6 = await bot.send_message(message.channel, "██████──██████──██░░░░████────██────\n██░░▒▒██──────████░░░░░░████──██────\n██──▓▓▒▒████████▒▒░░░░██░░████──────\n██────▓▓▒▒░░░░██▒▒░░────░░██████────\n")
+            x7 = await bot.send_message(message.channel, "──██░░────▒▒▒▒██▓▓▒▒░░░░░░██████────\n──██░░░░──────░░██▓▓▒▒░░████░░██────\n────████████████░░██████▒▒████──────\n────██▓▓▒▒░░░░██▒▒▒▒██████──────────\n")
+            x8 = await bot.send_message(message.channel, "────██▓▓▒▒░░░░██████░░██████────────\n──██▓▓▓▓▓▓▒▒──░░██▓▓▒▒░░░░──██──────\n──██▓▓▓▓▒▒░░░░░░██▓▓▓▓▒▒▒▒░░██──────\n──████████████████████████████──────\n")
             
             
             await asyncio.sleep(2)
 
-            #await bot.delete_message(x8)
-            #await bot.delete_message(x7)
-            #await bot.delete_message(x6)
-            #await bot.delete_message(x5)
-            #await bot.delete_message(x4)
-            #await bot.delete_message(x3)
-            #await bot.delete_message(x2)
-            #await bot.delete_message(x1)
+            await bot.delete_message(x8)
+            await bot.delete_message(x7)
+            await bot.delete_message(x6)
+            await bot.delete_message(x5)
+            await bot.delete_message(x4)
+            await bot.delete_message(x3)
+            await bot.delete_message(x2)
+            await bot.delete_message(x1)
 
             embed2 = discord.Embed(title = "I don't reply to everyone :D" , description="<:gofight:509374882346434560>")
             xxx= await bot.edit_message(embed1, embed = embed2)
             
             emoji = get(bot.get_all_emojis(), name='plz')
             await bot.add_reaction(message= xxx, emoji = emoji)
+            await bot.process_commands(message)
+  else:
+        True
+        await bot.process_commands(message)
             
 bot.run(os.getenv('TOKEN'))
 

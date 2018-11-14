@@ -802,7 +802,7 @@ async def quote(ctx, msg_id):
 @bot.command(pass_context=True)
 async def bust(ctx, user: discord.Member):
     
-    delta1 = datetime.timedelta(hours = 3, minutes = 0)  
+    delta1 = datetime.timedelta(hours = 0, minutes = 30)  
     now = datetime.datetime.now()
 
     then = now - delta1

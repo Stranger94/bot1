@@ -709,7 +709,7 @@ async def on_message(message):
   if message.content.startswith('Hi') or message.content.startswith('hi') or message.content.startswith('hey') or message.content.startswith('Hey'):
 
 
-      delta1 = datetime.timedelta(hours = 1, minutes = 5)  
+      delta1 = datetime.timedelta(minutes = 5)  
       now = datetime.datetime.now()
 
       then = now - delta1

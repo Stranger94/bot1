@@ -39,14 +39,14 @@ bot.loop.create_task(status())
 @commands.cooldown(1, 10, commands.BucketType.user)
 @bot.command(pass_context = True)
 async def info(ctx):
-       embed = discord.Embed(title= "Bot by Stranger#1405", description="Prefix: -/~\n**Latest updates:** Bot will reply sometimes on hi. You can run now, when battled with -battle, there will be added more options soon (**using badages for example**)." , color=0x80f43d)
+       embed = discord.Embed(title= "Bot by Stranger#1405", description="Prefix: -/~\n**Latest updates:** bust, noob, quote command (beta/bugging on server). Bot will reply sometimes on hi. You can run now, when battled with -battle, there will be added more options soon (**using badages for example**)." , color=0x80f43d)
        await bot.say(embed=embed)    
 
 
 @commands.cooldown(1, 10, commands.BucketType.user)
 @bot.command(pass_context = True)
 async def ping(ctx):
-       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 13.11.2018 21:49.\nFor latest updates: Type -info\n_____________<:stoneswordnoob:509197316930928650>_____________" , color=0x80f43d)
+       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 14.11.2018 06:10.\nFor latest updates: Type -info\n_____________<:stoneswordnoob:509197316930928650>_____________" , color=0x80f43d)
        await bot.say(embed=embed)
       
 @commands.cooldown(1, 30, commands.BucketType.user)
@@ -811,26 +811,8 @@ async def bust(ctx, user: discord.Member):
     async for message in bot.logs_from(ctx.message.channel, limit=5, after = then):
    
        
-       message = discord.utils.get(bot.messages, author = user)
-       if message == None:
-           async for message in bot.logs_from(ctx.message.channel, limit=10, after = then):
-                message = discord.utils.get(bot.messages, author = user)
-                emoji1 = get(bot.get_all_emojis(), name='stoneswordnoob')
-                emoji2 = get(bot.get_all_emojis(), name='Wierdcat')
-                await bot.add_reaction(message= message, emoji = '🇪')        
-                await bot.add_reaction(message= message, emoji = '🇵')        
-                await bot.add_reaction(message= message, emoji = '🇮')
-                await bot.add_reaction(message= message, emoji = '🇨')
-
-                await bot.add_reaction(message= message, emoji = emoji1)
-
-
-                await bot.add_reaction(message= message, emoji = '🇳')
-                await bot.add_reaction(message= message, emoji = '🇺')
-                await bot.add_reaction(message= message, emoji = '🇧')
-                await bot.add_reaction(message= message, emoji = emoji2)
-
-       else:
+        message = discord.utils.get(bot.messages, author = user)
+  
         emoji1 = get(bot.get_all_emojis(), name='stoneswordnoob')
         emoji2 = get(bot.get_all_emojis(), name='Wierdcat')
         await bot.add_reaction(message= message, emoji = '🇪')        

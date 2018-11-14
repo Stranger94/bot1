@@ -757,6 +757,91 @@ async def on_message(message):
   else:
         True
         await bot.process_commands(message)
-            
+@bot.command(pass_context=True)
+async def noob(ctx, message_id):
+    msg = await bot.get_message(ctx.message.channel, message_id)
+    emoji = get(bot.get_all_emojis(), name='Dame_Wall')
+    emoji2 = get(bot.get_all_emojis(), name='Ddia_Wall')
+    emoji3 = get(bot.get_all_emojis(), name='Dgold_Wall')
+    emoji4 = get(bot.get_all_emojis(), name='Dstone_Wall')
+    emoji5 = get(bot.get_all_emojis(), name='Dwood_Wall')
+    emoji9 = get(bot.get_all_emojis(), name='haha')
+    emoji10 = get(bot.get_all_emojis(), name='Dame_spike')
+    emoji11 = get(bot.get_all_emojis(), name='Ddia_spike')
+    emoji12 = get(bot.get_all_emojis(), name='Dgold_spike')
+    emoji13 = get(bot.get_all_emojis(), name='Dstone_spike')
+    emoji14 = get(bot.get_all_emojis(), name='Dwood_spike')
+    emoji15 = get(bot.get_all_emojis(), name='evil')
+
+
+
+    await bot.add_reaction(message= msg, emoji = emoji)
+    await bot.add_reaction(message= msg, emoji = emoji2)
+    await bot.add_reaction(message= msg, emoji = emoji3)
+    await bot.add_reaction(message= msg, emoji = emoji4)
+    await bot.add_reaction(message= msg, emoji = emoji5)
+    await bot.add_reaction(message= msg, emoji = '🇳')
+    await bot.add_reaction(message= msg, emoji = '🇺')
+    await bot.add_reaction(message= msg, emoji = '🇧')
+    await bot.add_reaction(message= msg, emoji = emoji9)
+    await bot.add_reaction(message= msg, emoji = emoji10)
+    await bot.add_reaction(message= msg, emoji = emoji11)
+    await bot.add_reaction(message= msg, emoji = emoji12)
+    await bot.add_reaction(message= msg, emoji = emoji13)
+    await bot.add_reaction(message= msg, emoji = emoji14)
+    await bot.add_reaction(message= msg, emoji = emoji15)
+
+
+@bot.command(pass_context=True)
+async def quote(ctx, msg_id):
+    msg = await bot.get_message(ctx.message.channel, msg_id)
+    await bot.say('{0.timestamp} - {0.content}'.format(msg))
+
+@bot.command(pass_context=True)
+async def bust(ctx, user: discord.Member):
+    
+    delta1 = datetime.timedelta(hours = 3, minutes = 0)  
+    now = datetime.datetime.now()
+
+    then = now - delta1
+    counter = 0
+
+    async for message in bot.logs_from(ctx.message.channel, limit=5, after = then):
+   
+       
+       message = discord.utils.get(bot.messages, author = user)
+       if message == None:
+           async for message in bot.logs_from(ctx.message.channel, limit=10, after = then):
+                message = discord.utils.get(bot.messages, author = user)
+                emoji1 = get(bot.get_all_emojis(), name='stoneswordnoob')
+                emoji2 = get(bot.get_all_emojis(), name='Wierdcat')
+                await bot.add_reaction(message= message, emoji = '🇪')        
+                await bot.add_reaction(message= message, emoji = '🇵')        
+                await bot.add_reaction(message= message, emoji = '🇮')
+                await bot.add_reaction(message= message, emoji = '🇨')
+
+                await bot.add_reaction(message= message, emoji = emoji1)
+
+
+                await bot.add_reaction(message= message, emoji = '🇳')
+                await bot.add_reaction(message= message, emoji = '🇺')
+                await bot.add_reaction(message= message, emoji = '🇧')
+                await bot.add_reaction(message= message, emoji = emoji2)
+
+       else:
+        emoji1 = get(bot.get_all_emojis(), name='stoneswordnoob')
+        emoji2 = get(bot.get_all_emojis(), name='Wierdcat')
+        await bot.add_reaction(message= message, emoji = '🇪')        
+        await bot.add_reaction(message= message, emoji = '🇵')        
+        await bot.add_reaction(message= message, emoji = '🇮')
+        await bot.add_reaction(message= message, emoji = '🇨')
+
+        await bot.add_reaction(message= message, emoji = emoji1)
+
+
+        await bot.add_reaction(message= message, emoji = '🇳')
+        await bot.add_reaction(message= message, emoji = '🇺')
+        await bot.add_reaction(message= message, emoji = '🇧')
+        await bot.add_reaction(message= message, emoji = emoji2)            
 bot.run(os.getenv('TOKEN'))
 

@@ -757,6 +757,7 @@ async def on_message(message):
   else:
         True
         await bot.process_commands(message)
+@commands.cooldown(1, 60, commands.BucketType.user)            
 @bot.command(pass_context=True)
 async def noob(ctx, message_id):
     msg = await bot.get_message(ctx.message.channel, message_id)
@@ -791,12 +792,13 @@ async def noob(ctx, message_id):
     await bot.add_reaction(message= msg, emoji = emoji14)
     await bot.add_reaction(message= msg, emoji = emoji15)
 
-
+@commands.cooldown(1, 60, commands.BucketType.user)            
 @bot.command(pass_context=True)
 async def quote(ctx, msg_id):
     msg = await bot.get_message(ctx.message.channel, msg_id)
     await bot.say('{0.timestamp} - {0.content}'.format(msg))
 
+@commands.cooldown(1, 60, commands.BucketType.user)            
 @bot.command(pass_context=True)
 async def bust(ctx, user: discord.Member):
     

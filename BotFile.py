@@ -11,7 +11,7 @@ import math
 import logging
 import datetime
 from discord.utils import get
-ddd
+
 client = discord.Client()
 bot = commands.Bot(command_prefix=("~", "-"))
 

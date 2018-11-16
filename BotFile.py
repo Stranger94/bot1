@@ -826,6 +826,24 @@ async def bust(ctx, user: discord.Member):
         await bot.add_reaction(message= message, emoji = '🇳')
         await bot.add_reaction(message= message, emoji = '🇺')
         await bot.add_reaction(message= message, emoji = '🇧')
-        await bot.add_reaction(message= message, emoji = emoji2)            
+        await bot.add_reaction(message= message, emoji = emoji2)    
+        
+@commands.cooldown(1, 60, commands.BucketType.user)            
+@bot.command(pass_context=True)
+async def invites(ctx):
+
+    if ctx.message.author.id ==  "301073055524847616":
+
+        invite = await bot.invites_from(ctx.message.channel.server)
+        for invite in invite:  
+            if str(invite) == "http://discord.gg/rFzNQDf":
+                await bot.say("{} invited ".format(ctx.message.author.name) + str(invite.uses) + " people into this server!")
+
+    else:
+
+                 await bot.say("{} has no specified invite link yet or is no partner.".format(ctx.message.author.name))        
+        
+        
+        
 bot.run(os.getenv('TOKEN'))
 

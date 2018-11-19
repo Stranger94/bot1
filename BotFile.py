@@ -107,7 +107,7 @@ async def tempmute(ctx, user: discord.Member):
             embed = discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0xff0000)
             await bot.say(embed=embed)
 
-@commands.cooldown(2, 120, commands.BucketType.user)            
+@commands.cooldown(1, 120, commands.BucketType.user)            
 @bot.command(pass_context=True)
 async def guess(ctx, y: int):
     if ("504819720197898252" in (role.id for role in ctx.message.author.roles)):
@@ -163,7 +163,7 @@ async def guess(ctx, y: int):
                         await bot.say(embed=embed) 
                  
                  
-@commands.cooldown(2, 300, commands.BucketType.user)
+@commands.cooldown(1, 300, commands.BucketType.user)
 @bot.command(pass_context=True)
 async def nuke(ctx, user: discord.Member):
    

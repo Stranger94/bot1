@@ -39,14 +39,14 @@ bot.loop.create_task(status())
 @commands.cooldown(1, 10, commands.BucketType.user)
 @bot.command(pass_context = True)
 async def info(ctx):
-       embed = discord.Embed(title= "Bot by Stranger#1405", description="Prefix: -/~\n**Latest updates:** bust, noob, quote command (beta/bugging on server). Bot will reply sometimes on hi. You can run now, when battled with -battle, there will be added more options soon (**using badages for example**)." , color=0x80f43d)
+       embed = discord.Embed(title= "Bot by Stranger#1405", description="Prefix: -/~\n**Latest updates:** Some everyone ping stuff. bust, noob, quote command (beta/bugging on server). Bot will reply sometimes on hi. You can run now, when battled with -battle, there will be added more options soon (**using badages for example**)." , color=0x80f43d)
        await bot.say(embed=embed)    
 
 
 @commands.cooldown(1, 10, commands.BucketType.user)
 @bot.command(pass_context = True)
 async def ping(ctx):
-       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 14.11.2018 06:10.\nFor latest updates: Type -info\n_____________<:stoneswordnoob:509197316930928650>_____________" , color=0x80f43d)
+       embed = discord.Embed(title= "Bot by Stranger#1405", description="Last update: 19.11.2018 21:10.\nFor latest updates: Type -info\n_____________<:stoneswordnoob:509197316930928650>_____________" , color=0x80f43d)
        await bot.say(embed=embed)
       
 @commands.cooldown(1, 30, commands.BucketType.user)
@@ -754,6 +754,19 @@ async def on_message(message):
             emoji = get(bot.get_all_emojis(), name='plz')
             await bot.add_reaction(message= xxx, emoji = emoji)
             await bot.process_commands(message)
+  else:
+        True
+        await bot.process_commands(message)
+  if not ("514152759302422536" in (role.id for role in message.author.roles)) and not ("497072853326495755" in (role.id for role in message.author.roles)):
+            if "@everyone" in message.content or "@here" in message.content:
+                discord.Member = message.author
+                await bot.send_message(discord.Member, "you can't mention @everyone")
+                await asyncio.sleep(10)
+
+                await bot.send_message(discord.Member, "Understand that you can't mention @everyone?")
+                await asyncio.sleep(10)
+
+                await bot.send_message(discord.Member, "Stop trying to mention @everyone!")
   else:
         True
         await bot.process_commands(message)

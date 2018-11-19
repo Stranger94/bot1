@@ -757,6 +757,17 @@ async def on_message(message):
   else:
         True
         await bot.process_commands(message)
+        
+  if ("514152759302422536" in (role.id for role in message.author.roles)):
+      if "@everyone" in message.content or "@here" in message.content:
+           role = discord.utils.get(message.author.server.roles, id='514152759302422536') 
+           await bot.remove_roles(message.author, role)
+           await bot.say('I removed your special "mentionEveryone" role now!')
+
+  else:
+        True
+        await bot.process_commands(message)
+        
 @commands.cooldown(1, 60, commands.BucketType.user)            
 @bot.command(pass_context=True)
 async def noob(ctx, message_id):

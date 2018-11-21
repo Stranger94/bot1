@@ -27,6 +27,13 @@ async def status():
         await bot.change_presence(game=discord.Game(name="Bored, pls help!"), status=discord.Status("idle"))
         await asyncio.sleep(10)
 
+async def bump_adsites():
+    await bot.wait_until_ready()
+    while not bot.is_closed:
+        channel = bot.get_channel("497075184172531723")
+        await bot.send_message(channel, '!dl bump')
+        await asyncio.sleep(7250)
+
 @bot.event
 async def on_ready():
     print('Logged in as')
@@ -35,6 +42,9 @@ async def on_ready():
     print('------')
 
 bot.loop.create_task(status())
+bot.loop.create_task(bump_adsites())
+
+
 
 @commands.cooldown(1, 10, commands.BucketType.user)
 @bot.command(pass_context = True)

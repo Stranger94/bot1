@@ -777,9 +777,7 @@ async def on_message(message):
                 await asyncio.sleep(10)
 
                 await bot.send_message(discord.Member, "Stop trying to mention @everyone!")
-  else:
-        True
-        await bot.process_commands(message)
+
         
   if ("514152759302422536" in (role.id for role in message.author.roles)):
       if "@everyone" in message.content or "@here" in message.content:
@@ -787,9 +785,7 @@ async def on_message(message):
            await bot.remove_roles(message.author, role)
            await bot.say('I removed your special "mentionEveryone" role now!')
 
-  else:
-        True
-        await bot.process_commands(message)
+
         
 @commands.cooldown(1, 60, commands.BucketType.user)            
 @bot.command(pass_context=True)
@@ -875,6 +871,23 @@ async def invites(ctx, user: discord.Member):
         if x == 0:
 
             await bot.say("{} has no generated invite link and is no partner.".format(user.name))      
+        
+@commands.cooldown(2, 60, commands.BucketType.user)            
+@bot.command(pass_context=True)
+async def partner(ctx, user: discord.Member):
+    if (("497072853326495755" in (role.id for role in ctx.message.author.roles)) or ("444427406225309696" in (role.id for role in ctx.message.author.roles)) or ("512415265317847081" in (role.id for role in ctx.message.author.roles))):
+
+        if ("513796769004519444" in (role.id for role in user.roles)):
+            role = discord.utils.get(ctx.message.server.roles, id="513796769004519444")
+            await bot.remove_roles(user, role)
+            channel = bot.get_channel("497075184172531723")
+            await bot.send_message(channel, 'Partner role removed from {}'.format(user.name))
+
+        else:
+            role = discord.utils.get(ctx.message.server.roles, id="513796769004519444")
+            await bot.add_roles(user, role)
+            channel = bot.get_channel("497075184172531723")
+            await bot.send_message(channel, 'Partner role added to {}'.format(user.name))        
         
 bot.run(os.getenv('TOKEN'))
 

@@ -15,6 +15,8 @@ from discord.utils import get
 client = discord.Client()
 bot = commands.Bot(command_prefix=("~", "-"))
 
+bot.Count = 0
+bot.bgtaskmessage = 0
 async def status():
     await bot.wait_until_ready()
     while not bot.is_closed:
@@ -784,7 +786,40 @@ async def on_message(message):
            role = discord.utils.get(message.author.server.roles, id='514152759302422536') 
            await bot.remove_roles(message.author, role)
            await bot.say('I removed your special "mentionEveryone" role now!')
+        
+bot.bgtaskmessage = 0
+async def counting(): #write 1 message to edit
+    await bot.wait_until_ready()
+    while not bot.is_closed:
+        channel =  bot.get_channel("514917018814775307")
+        bot.Count += 1
+        embed = discord.Embed(title="Title", description='Number <:Dame_spike:504451290361757708>: ' + str(bot.Count), color=0xd224f4)
+        embed.set_author(name='Counting Event', icon_url="https://media.discordapp.net/attachments/514917018814775307/515301634809528330/Ame_spike.png")
+        msg = await bot.send_message(channel, embed = embed)
+        bot.bgtaskmessage = msg.id
+        emoji1 = get(bot.get_all_emojis(), name='Dame_spike')
+        await bot.add_reaction(message= msg, emoji = emoji1) 
+        break
+bot.loop.create_task(counting())
 
+@bot.event 
+async def on_reaction_add(reaction, user):
+    channel =  bot.get_channel("514917018814775307")
+    message = await bot.get_message(channel, bot.bgtaskmessage)
+    emoji1 = get(bot.get_all_emojis(), name='Dame_spike')
+
+    if (reaction.emoji == emoji1 or reaction.message == bot.bgtaskmessage):
+            bot.Count += 1
+            embed = discord.Embed(title="Counting Event - Participants get 1 (max 100 <:Dstarvepro:502170617076776970>) for every 20 <:Dame_spike:504451290361757708>", description='Number <:Dame_spike:504451290361757708>: **' + str(bot.Count) + '**', color=0xd224f4)
+            embed.set_author(name='Increase the Count till tomorrow 8 pm', icon_url="https://media.discordapp.net/attachments/514917018814775307/515301634809528330/Ame_spike.png")
+            embed.set_footer(text="This is in development, if you like it I can work on it.", icon_url="https://images-ext-2.discordapp.net/external/sshKs1hxko3YR-vILfivBNCMlQ33YN8uE0zdJhiw8JY/%3Fsize%3D256/https/cdn.discordapp.com/avatars/506186624032571412/7193d48d0f345f633b2959f26b4512b2.png")
+            embed.add_field(name="Participation", value="Participate with <:Dstarvepro:502170617076776970> to receive reward tomorrow.", inline=False)
+
+            await bot.edit_message(message, embed = embed)
+            botmember = bot.get_user_info("506186624032571412")
+            userR = bot.get_reaction_users(reaction = emoji1, limit = 2)
+            if bot.Count > 2:
+                await bot.remove_reaction(message= message, emoji = emoji1, member = user)
 
         
 @commands.cooldown(1, 60, commands.BucketType.user)            

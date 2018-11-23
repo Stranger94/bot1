@@ -800,7 +800,7 @@ async def counting(): #write 1 message to edit
         emoji1 = get(bot.get_all_emojis(), name='Dame_spike')
         await bot.add_reaction(message= msg, emoji = emoji1) 
         break
-bot.loop.create_task(counting())
+#bot.loop.create_task(counting())
 
 @bot.event 
 async def on_reaction_add(reaction, user):

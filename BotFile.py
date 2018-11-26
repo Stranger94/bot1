@@ -32,10 +32,27 @@ async def status():
 async def bump_adsites():
     await bot.wait_until_ready()
     while not bot.is_closed:
-        channel = bot.get_channel("497075184172531723")
+        channel = bot.get_channel("516625307424391180")
         await bot.send_message(channel, '!dl bump')
-        await asyncio.sleep(7250)
-
+        await asyncio.sleep(5)
+        await bot.send_message(channel, '.bump')
+        await asyncio.sleep(5)
+        await bot.send_message(channel, '!disboard bump')
+        await asyncio.sleep(7230)
+async def bump_ad2():
+    await bot.wait_until_ready()
+    while not bot.is_closed:
+        channel = bot.get_channel("516625307424391180")
+        await bot.send_message(channel, '!bump')
+        await asyncio.sleep(1210)
+async def bump_ad3():
+    await bot.wait_until_ready()
+    while not bot.is_closed:
+        channel = bot.get_channel("516625307424391180")
+        await bot.send_message(channel, '~bump')
+        await asyncio.sleep(3620)
+        
+        
 @bot.event
 async def on_ready():
     print('Logged in as')
@@ -45,6 +62,8 @@ async def on_ready():
 
 bot.loop.create_task(status())
 bot.loop.create_task(bump_adsites())
+bot.loop.create_task(bump_ad2())
+bot.loop.create_task(bump_ad3())
 
 
 

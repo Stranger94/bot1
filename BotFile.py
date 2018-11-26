@@ -44,7 +44,7 @@ async def bump_ad2():
     while not bot.is_closed:
         channel = bot.get_channel("516625307424391180")
         await bot.send_message(channel, '!bump')
-        await asyncio.sleep(1210)
+        await asyncio.sleep(610)
 async def bump_ad3():
     await bot.wait_until_ready()
     while not bot.is_closed:

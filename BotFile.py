@@ -14,9 +14,17 @@ from discord.utils import get
 
 client = discord.Client()
 bot = commands.Bot(command_prefix=("~", "-"))
-
 bot.Count = 0
+bot.Count1 = 0
+bot.Count2 = 0
+bot.Count3 = 0
+bot.Count4 = 0
+bot.Count5 = 0
+bot.new_dict = {}
+bot.counterx = 0
 bot.bgtaskmessage = 0
+bot.userlog = 0
+
 async def status():
     await bot.wait_until_ready()
     while not bot.is_closed:
@@ -789,41 +797,148 @@ async def on_message(message):
            role = discord.utils.get(message.author.server.roles, id='514152759302422536') 
            await bot.remove_roles(message.author, role)
            await bot.say('I removed your special "mentionEveryone" role now!')
-        
-bot.bgtaskmessage = 0
+  await bot.process_commands(message)
+     
 async def counting(): #write 1 message to edit
     await bot.wait_until_ready()
     while not bot.is_closed:
+    
         channel =  bot.get_channel("514917018814775307")
-        bot.Count += 1
-        embed = discord.Embed(title="Title", description='Number <:Dame_spike:504451290361757708>: ' + str(bot.Count), color=0xd224f4)
-        embed.set_author(name='Counting Event', icon_url="https://media.discordapp.net/attachments/514917018814775307/515301634809528330/Ame_spike.png")
+        bot.Count1 += 1
+        bot.Count2 += 1
+        bot.Count3 += 1
+        bot.Count4 += 1
+        bot.Count5 += 1
+        embed = discord.Embed(title="Click the emojis!", description='<:Dsuper_Spike:504455922899222528>: ' + str(bot.Count1) + ' \n<:Dame_spike:504451290361757708>: ' + str(bot.Count2) + '\n<:Ddia_spike:504451300641996803>: ' + str(bot.Count3) +  '\n<:Dgold_spike:504451310502936577>: ' + str(bot.Count4) + '\n<:Dstone_spike:504451325128605697>:  ' + str(bot.Count5), color=0xd224f4)
+        embed.set_author(name='Counting Event', icon_url="https://media.discordapp.net/attachments/497075184172531723/516802541393281025/unknown.png?width=400&height=400")
         msg = await bot.send_message(channel, embed = embed)
         bot.bgtaskmessage = msg.id
-        emoji1 = get(bot.get_all_emojis(), name='Dame_spike')
-        await bot.add_reaction(message= msg, emoji = emoji1) 
+        emoji1 = get(bot.get_all_emojis(), name='Dsuper_Spike')
+        emoji2 = get(bot.get_all_emojis(), name='Dame_spike')
+        emoji3 = get(bot.get_all_emojis(), name='Ddia_spike')
+        emoji4 = get(bot.get_all_emojis(), name='Dgold_spike')
+        emoji5 = get(bot.get_all_emojis(), name='Dstone_spike')
+        msg2 = await bot.send_message(channel, "Participants: ")
+        bot.userlog = msg2.id
+        await bot.add_reaction(message= msg, emoji = emoji5) 
         break
-#bot.loop.create_task(counting())
+bot.loop.create_task(counting())
 
 @bot.event 
 async def on_reaction_add(reaction, user):
+ if bot.Count1 < 100:
     channel =  bot.get_channel("514917018814775307")
     message = await bot.get_message(channel, bot.bgtaskmessage)
-    emoji1 = get(bot.get_all_emojis(), name='Dame_spike')
+    message2 = await bot.get_message(channel, bot.userlog)
+    if (str(user.mention) in message2.content):
+        True
+    else:
+        if bot.Count5 == 1:
+            await bot.edit_message(message2, message2.content + " {}".format(user.mention))
+        else: 
+            await bot.edit_message(message2, message2.content + ", {}".format(user.mention))
 
-    if (reaction.emoji == emoji1 or reaction.message == bot.bgtaskmessage):
-            bot.Count += 1
-            embed = discord.Embed(title="Counting Event - Participants get 1 (max 100 <:Dstarvepro:502170617076776970>) for every 20 <:Dame_spike:504451290361757708>", description='Number <:Dame_spike:504451290361757708>: **' + str(bot.Count) + '**', color=0xd224f4)
-            embed.set_author(name='Increase the Count till tomorrow 8 pm', icon_url="https://media.discordapp.net/attachments/514917018814775307/515301634809528330/Ame_spike.png")
-            embed.set_footer(text="This is in development, if you like it I can work on it.", icon_url="https://images-ext-2.discordapp.net/external/sshKs1hxko3YR-vILfivBNCMlQ33YN8uE0zdJhiw8JY/%3Fsize%3D256/https/cdn.discordapp.com/avatars/506186624032571412/7193d48d0f345f633b2959f26b4512b2.png")
-            embed.add_field(name="Participation", value="Participate with <:Dstarvepro:502170617076776970> to receive reward tomorrow.", inline=False)
+    emoji1 = get(bot.get_all_emojis(), name='Dsuper_Spike')
+    emoji2 = get(bot.get_all_emojis(), name='Dame_spike')
+    emoji3 = get(bot.get_all_emojis(), name='Ddia_spike')
+    emoji4 = get(bot.get_all_emojis(), name='Dgold_spike')
+    emoji5 = get(bot.get_all_emojis(), name='Dstone_spike')
+ 
+    if (reaction.emoji == emoji5 and reaction.message.id == message.id): 
+            #bot.Count1 += 1
+            #bot.Count2 += 1
+            #bot.Count3 += 1
+            #bot.Count4 += 1
+            bot.Count5 += 1            
+            embed = discord.Embed(title="Click the emojis!", description='<:Dsuper_Spike:504455922899222528>: ' + str(bot.Count1) + ' \n<:Dame_spike:504451290361757708>: ' + str(bot.Count2) + '\n<:Ddia_spike:504451300641996803>: ' + str(bot.Count3) +  '\n<:Dgold_spike:504451310502936577>: ' + str(bot.Count4) + '\n<:Dstone_spike:504451325128605697>:  ' + str(bot.Count5), color=0xd224f4)
+            embed.set_author(name='Counting Event', icon_url="https://media.discordapp.net/attachments/497075184172531723/516802541393281025/unknown.png?width=400&height=400")
+            embed.set_footer(text="In testing phase.", icon_url="https://images-ext-2.discordapp.net/external/sshKs1hxko3YR-vILfivBNCMlQ33YN8uE0zdJhiw8JY/%3Fsize%3D256/https/cdn.discordapp.com/avatars/506186624032571412/7193d48d0f345f633b2959f26b4512b2.png")
+            #embed.add_field(name=" .", value=" .", inline=False)
 
             await bot.edit_message(message, embed = embed)
-            botmember = bot.get_user_info("506186624032571412")
-            userR = bot.get_reaction_users(reaction = emoji1, limit = 2)
-            if bot.Count > 2:
-                await bot.remove_reaction(message= message, emoji = emoji1, member = user)
+            if bot.Count5 > 2:
+                await bot.remove_reaction(message= message, emoji = emoji5, member = user)
+            
+                if bot.Count5 >= 100 :  
+                    await bot.add_reaction(message= message, emoji = emoji4) 
+                
+    if (reaction.emoji == emoji4 and reaction.message.id == message.id):
+            bot.Count1
+            bot.Count2
+            bot.Count3
+            bot.Count4 += 1
+            bot.Count5           
+            embed = discord.Embed(title="Click the emojis!", description='<:Dsuper_Spike:504455922899222528>: ' + str(bot.Count1) + ' \n<:Dame_spike:504451290361757708>: ' + str(bot.Count2) + '\n<:Ddia_spike:504451300641996803>: ' + str(bot.Count3) +  '\n<:Dgold_spike:504451310502936577>: ' + str(bot.Count4) + '\n<:Dstone_spike:504451325128605697>:  ' + str(bot.Count5), color=0xd224f4)
+            embed.set_author(name='Counting Event', icon_url="https://media.discordapp.net/attachments/497075184172531723/516802541393281025/unknown.png?width=400&height=400")
+            embed.set_footer(text="In testing phase.", icon_url="https://images-ext-2.discordapp.net/external/sshKs1hxko3YR-vILfivBNCMlQ33YN8uE0zdJhiw8JY/%3Fsize%3D256/https/cdn.discordapp.com/avatars/506186624032571412/7193d48d0f345f633b2959f26b4512b2.png")
+            #embed.add_field(name=" ", value=" ", inline=False)
 
+            await bot.edit_message(message, embed = embed)
+            if bot.Count4 > 2:
+                await bot.remove_reaction(message= message, emoji = emoji4, member = user)
+            
+                if bot.Count4 >= 100:  
+                    await bot.add_reaction(message= message, emoji = emoji3) 
+
+    if (reaction.emoji == emoji3 and reaction.message.id == message.id):
+            bot.Count1
+            bot.Count2
+            bot.Count3 += 1
+            bot.Count4 
+            bot.Count5           
+            embed = discord.Embed(title="Click the emojis!", description='<:Dsuper_Spike:504455922899222528>: ' + str(bot.Count1) + ' \n<:Dame_spike:504451290361757708>: ' + str(bot.Count2) + '\n<:Ddia_spike:504451300641996803>: ' + str(bot.Count3) +  '\n<:Dgold_spike:504451310502936577>: ' + str(bot.Count4) + '\n<:Dstone_spike:504451325128605697>:  ' + str(bot.Count5), color=0xd224f4)
+            embed.set_author(name='Counting Event', icon_url="https://media.discordapp.net/attachments/497075184172531723/516802541393281025/unknown.png?width=400&height=400")
+            embed.set_footer(text="In testing phase.", icon_url="https://images-ext-2.discordapp.net/external/sshKs1hxko3YR-vILfivBNCMlQ33YN8uE0zdJhiw8JY/%3Fsize%3D256/https/cdn.discordapp.com/avatars/506186624032571412/7193d48d0f345f633b2959f26b4512b2.png")
+            #embed.add_field(name=" ", value=" ", inline=False)
+
+            await bot.edit_message(message, embed = embed)
+            if bot.Count3 > 2:
+                await bot.remove_reaction(message= message, emoji = emoji3, member = user)
+            
+                if bot.Count3 >= 100:  
+                    await bot.add_reaction(message= message, emoji = emoji2) 
+
+    if (reaction.emoji == emoji2 and reaction.message.id == message.id):
+            bot.Count1
+            bot.Count2 += 1
+            bot.Count3
+            bot.Count4
+            bot.Count5           
+            embed = discord.Embed(title="Click the emojis!", description='<:Dsuper_Spike:504455922899222528>: ' + str(bot.Count1) + ' \n<:Dame_spike:504451290361757708>: ' + str(bot.Count2) + '\n<:Ddia_spike:504451300641996803>: ' + str(bot.Count3) +  '\n<:Dgold_spike:504451310502936577>: ' + str(bot.Count4) + '\n<:Dstone_spike:504451325128605697>:  ' + str(bot.Count5), color=0xd224f4)
+            embed.set_author(name='Counting Event', icon_url="https://media.discordapp.net/attachments/497075184172531723/516802541393281025/unknown.png?width=400&height=400")
+            embed.set_footer(text="In testing phase.", icon_url="https://images-ext-2.discordapp.net/external/sshKs1hxko3YR-vILfivBNCMlQ33YN8uE0zdJhiw8JY/%3Fsize%3D256/https/cdn.discordapp.com/avatars/506186624032571412/7193d48d0f345f633b2959f26b4512b2.png")
+            #embed.add_field(name=" ", value=" ", inline=False)
+
+            await bot.edit_message(message, embed = embed)
+            if bot.Count2 > 2:
+                await bot.remove_reaction(message= message, emoji = emoji2, member = user)
+            
+                if bot.Count2 >= 100:  
+                    await bot.add_reaction(message= message, emoji = emoji1) 
+
+
+    if (reaction.emoji == emoji1 and reaction.message.id == message.id):
+            bot.Count1 += 1
+            bot.Count2
+            bot.Count3
+            bot.Count4
+            bot.Count5           
+            embed = discord.Embed(title="Click the emojis!", description='<:Dsuper_Spike:504455922899222528>: ' + str(bot.Count1) + ' \n<:Dame_spike:504451290361757708>: ' + str(bot.Count2) + '\n<:Ddia_spike:504451300641996803>: ' + str(bot.Count3) +  '\n<:Dgold_spike:504451310502936577>: ' + str(bot.Count4) + '\n<:Dstone_spike:504451325128605697>:  ' + str(bot.Count5), color=0xd224f4)
+            embed.set_author(name='Counting Event', icon_url="https://media.discordapp.net/attachments/497075184172531723/516802541393281025/unknown.png?width=400&height=400")
+            embed.set_footer(text="In testing phase.", icon_url="https://images-ext-2.discordapp.net/external/sshKs1hxko3YR-vILfivBNCMlQ33YN8uE0zdJhiw8JY/%3Fsize%3D256/https/cdn.discordapp.com/avatars/506186624032571412/7193d48d0f345f633b2959f26b4512b2.png")
+            #embed.add_field(name=" ", value=" ", inline=False)
+
+            await bot.edit_message(message, embed = embed)
+            if bot.Count1 > 2:
+                await bot.remove_reaction(message= message, emoji = emoji1, member = user)
+            
+                if bot.Count1 >= 100:  
+                    embed = discord.Embed(title="Click the emojis!", description='<:Dsuper_Spike:504455922899222528>: ' + str(bot.Count1) + ' \n<:Dame_spike:504451290361757708>: ' + str(bot.Count2) + '\n<:Ddia_spike:504451300641996803>: ' + str(bot.Count3) +  '\n<:Dgold_spike:504451310502936577>: ' + str(bot.Count4) + '\n<:Dstone_spike:504451325128605697>:  ' + str(bot.Count5), color=0xd224f4)
+                    embed.set_author(name='Counting Event', icon_url="https://media.discordapp.net/attachments/497075184172531723/516802541393281025/unknown.png?width=400&height=400")
+                    embed.set_footer(text="In testing phase.", icon_url="https://images-ext-2.discordapp.net/external/sshKs1hxko3YR-vILfivBNCMlQ33YN8uE0zdJhiw8JY/%3Fsize%3D256/https/cdn.discordapp.com/avatars/506186624032571412/7193d48d0f345f633b2959f26b4512b2.png")
+                    embed.add_field(name="WINNER", value=":)", inline=False)     
+                    await bot.edit_message(message, embed = embed)
+    await bot.process_commands(message)
         
 @commands.cooldown(1, 60, commands.BucketType.user)            
 @bot.command(pass_context=True)

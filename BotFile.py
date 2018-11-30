@@ -776,7 +776,6 @@ async def on_message(message):
             
             emoji = get(bot.get_all_emojis(), name='plz')
             await bot.add_reaction(message= xxx, emoji = emoji)
-            await bot.process_commands(message)
 
   if not ("514152759302422536" in (role.id for role in message.author.roles)) and not ("497072853326495755" in (role.id for role in message.author.roles)):
             if "@everyone" in message.content or "@here" in message.content:
@@ -795,7 +794,9 @@ async def on_message(message):
            role = discord.utils.get(message.author.server.roles, id='514152759302422536') 
            await bot.remove_roles(message.author, role)
            await bot.say('I removed your special "mentionEveryone" role now!')
-     
+  await bot.process_commands(message)
+  
+
 async def counting(): #write 1 message to edit
     await bot.wait_until_ready()
     while not bot.is_closed:

@@ -936,7 +936,6 @@ async def on_reaction_add(reaction, user):
                     embed.set_footer(text="In testing phase.", icon_url="https://images-ext-2.discordapp.net/external/sshKs1hxko3YR-vILfivBNCMlQ33YN8uE0zdJhiw8JY/%3Fsize%3D256/https/cdn.discordapp.com/avatars/506186624032571412/7193d48d0f345f633b2959f26b4512b2.png")
                     embed.add_field(name="WINNER", value=":)", inline=False)     
                     await bot.edit_message(message, embed = embed)
-    await bot.process_commands(message)
         
 @commands.cooldown(1, 60, commands.BucketType.user)            
 @bot.command(pass_context=True)

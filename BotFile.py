@@ -42,6 +42,8 @@ async def bump_adsites():
     while not bot.is_closed:
         channel = bot.get_channel("516625307424391180")
         await bot.send_message(channel, '!dl bump')
+        channel = bot.get_channel("553179703255760916")
+        await bot.send_message(channel, '!dl bump')                         
         await asyncio.sleep(7230)
 
         

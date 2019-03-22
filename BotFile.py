@@ -60,7 +60,7 @@ async def on_ready():
 
 bot.loop.create_task(status())
 bot.loop.create_task(bump_adsites())
-bot.loop.create_task(bumb_adsites2())
+bot.loop.create_task(bump_adsites2())
 
 
 
